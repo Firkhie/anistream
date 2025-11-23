@@ -7,7 +7,7 @@ export default async function DashboardContent() {
   const initialData: SearchResponse = await getAnimeByPreset({ preset: "newest" });
 
   return (
-    <div className="flex gap-12">
+    <div className="flex flex-col lg:flex-row gap-12">
       <MainSection initialData={initialData} />
       <SubSection />
     </div>

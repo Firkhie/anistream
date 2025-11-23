@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex pt-16 flex-col gap-2">
       <div>LOGO</div>
       <span>
         AniStream does not store any files on our server, we only linked to the media which is

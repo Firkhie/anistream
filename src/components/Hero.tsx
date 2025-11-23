@@ -10,7 +10,15 @@ import { SearchResponse } from "@/types";
 import parse from "html-react-parser";
 import { Button } from "./ui/Button";
 import { removeBrTags } from "@/lib/utils";
-import { Calendar1, ClosedCaption, LucideIcon, Monitor, Star } from "lucide-react";
+import {
+  Calendar1,
+  ClosedCaption,
+  Info,
+  LucideIcon,
+  Monitor,
+  PlayCircle,
+  Star,
+} from "lucide-react";
 import { Badge } from "./ui/Badge";
 
 const heroBadges: {
@@ -49,14 +57,14 @@ export default async function Hero() {
             return (
               <CarouselItem
                 key={anime.id}
-                className="flex items-end h-[480px] rounded-sm w-full bg-cover bg-center text-white"
+                className="flex items-end h-[350px] lg:h-[480px] rounded-sm w-full bg-cover bg-center text-white"
                 style={{
                   backgroundImage: `url(${anime.bannerImage})`,
                 }}
               >
-                <div className="flex justify-between p-5">
+                <div className="flex gap-4 lg:gap-0 flex-col lg:flex-row p-5">
                   {/* Badges, Title, & Description */}
-                  <div className="flex flex-col gap-2 flex-1">
+                  <div className="flex flex-1 flex-col gap-2 ">
                     <div className="flex gap-1 ">
                       {heroBadges.map(({ icon: Icon, key }) => {
                         const value = anime[key];
@@ -69,15 +77,19 @@ export default async function Hero() {
                         );
                       })}
                     </div>
-                    <h1 className="text-4xl font-semibold line-clamp-2">{title}</h1>
-                    <span className="line-clamp-3">{parse(removeBrTags(description))}</span>
+                    <h1 className="text-3xl lg:text-4xl font-semibold line-clamp-2">{title}</h1>
+                    <span className="line-clamp-2 lg:line-clamp-3">
+                      {parse(removeBrTags(description))}
+                    </span>
                   </div>
                   {/* Buttons */}
-                  <div className="flex flex-1 gap-2 items-end justify-end">
+                  <div className="flex flex-1 gap-2 items-end lg:justify-end">
                     <Button size={"lg"} variant={"secondary"}>
+                      <Info />
                       Details
                     </Button>
                     <Button size={"lg"} variant={"secondary"}>
+                      <PlayCircle />
                       Watch Now
                     </Button>
                   </div>

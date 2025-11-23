@@ -33,7 +33,7 @@ export default function AnimeRankList({
   const { name, icon: Icon } = titles[sectionType];
   const IconButton = showMore ? ChevronUp : ChevronDown;
   return (
-    <div className="flex flex-col gap-3 p-2 rounded-sm bg-amber-100">
+    <div className="flex h-fit flex-col gap-3 p-2 rounded-sm bg-amber-100">
       {/* Title */}
       <div className="flex gap-3 items-center">
         <Icon className="h-5 w-5" />

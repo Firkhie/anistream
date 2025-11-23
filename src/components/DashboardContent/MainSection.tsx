@@ -46,44 +46,31 @@ export default function MainSection({ initialData }: { initialData: SearchRespon
     <div className="flex flex-1 flex-col gap-4">
       {/* Buttons */}
       <div className="flex justify-between">
-        <div className="flex items-center gap-1">
+        {/* Filter */}
+        <div className="flex items-center gap-4 bg-amber-500 py-1 px-4 rounded-sm">
           {(["newest", "popular", "trending"] as Preset[]).map((item) => (
             <div
               key={item}
-              className={cn(
-                "uppercase py-1 px-4 bg-amber-500 rounded-sm text-sm",
-                preset === item ? "bg-amber-100" : ""
-              )}
+              className={cn("uppercase rounded-sm text-sm", preset === item ? "text-white" : "")}
               onClick={() => handlePreset(item)}
             >
               {item}
             </div>
           ))}
         </div>
-        <div className="flex gap-1">
-          <Button
-            className="py-1 px-2 rounded-sm bg-amber-500 flex items-center"
-            onClick={() => handlePrevious()}
-            disabled={currentPage <= 1}
-          >
-            <ChevronLeft className="h-4.5 w-4.5" />
+        {/* Paging */}
+        <div className="flex items-center gap-4 bg-amber-500  rounded-sm">
+          <Button onClick={() => handlePrevious()} disabled={currentPage <= 1} variant={"ghost"}>
+            <ChevronLeft />
           </Button>
-          <div className="py-1 px-2 rounded-sm bg-amber-500 flex items-center">{currentPage}</div>
-          <Button
-            className="py-1 px-2 rounded-sm bg-amber-500 flex items-center"
-            onClick={() => handleNext()}
-            disabled={!data.hasNextPage!}
-          >
-            <ChevronRight className="h-4.5 w-4.5" />
+          <div>{currentPage}</div>
+          <Button onClick={() => handleNext()} disabled={!data.hasNextPage!} variant={"ghost"}>
+            <ChevronRight />
           </Button>
         </div>
       </div>
       {/* Content */}
-      {loading ? (
-        <AnimeCardSkeletonList count={5} className="grid-cols-5" />
-      ) : (
-        <MainAnimeList results={data.results} />
-      )}
+      {loading ? <AnimeCardSkeletonList count={5} /> : <MainAnimeList results={data.results} />}
     </div>
   );
 }

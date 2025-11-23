@@ -9,7 +9,7 @@ export default function AnimeCardSkeletonList({
   className?: string;
 }) {
   return (
-    <div className={cn("grid gap-4", className)}>
+    <div className={cn("grid gap-4 grid-cols-[repeat(auto-fill,minmax(180px,1fr))]", className)}>
       {Array.from({ length: count }).map((_, i) => (
         <AnimeCardSkeleton key={i} />
       ))}
