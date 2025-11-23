@@ -113,6 +113,12 @@ export type StaffName = {
   userPreferred: string | null;
 };
 
+export type SearchResponse = {
+  currentPage: number | null;
+  hasNextPage: boolean | null;
+  results: AnimeBasic[];
+};
+
 export type MediaFormat =
   | "TV"
   | "TV_SHORT"
