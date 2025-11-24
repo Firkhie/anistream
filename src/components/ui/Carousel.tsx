@@ -181,7 +181,7 @@ function CarouselPrevious({
       size={size}
       className={cn(
         "absolute size-8 rounded-sm",
-        placement === "top" ? "top-5 right-[54px]" : "left-0 top-1/2 -translate-y-1/2",
+        placement === "top" ? "top-5 right-[52px]" : "left-0 top-1/2 -translate-y-1/2",
         className
       )}
       disabled={!canScrollPrev}

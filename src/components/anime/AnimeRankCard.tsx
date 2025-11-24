@@ -30,7 +30,7 @@ export default function AnimeRankCard({ ...anime }: AnimeBasic) {
   const textColor = anime.color || "black";
 
   return (
-    <div className="flex shrink-0 gap-2 h-24 rounded-sm overflow-hidden bg-amber-200/50">
+    <div className="flex shrink-0 gap-2 h-24 rounded-sm overflow-hidden bg-secondary/50">
       {/* Image */}
       <Image src={anime.coverImage!} alt={title} width="72" height="96" className="object-cover" />
       {/* Content */}

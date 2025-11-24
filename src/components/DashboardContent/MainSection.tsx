@@ -47,11 +47,14 @@ export default function MainSection({ initialData }: { initialData: SearchRespon
       {/* Buttons */}
       <div className="flex justify-between">
         {/* Filter */}
-        <div className="flex items-center gap-4 bg-amber-500 py-1 px-4 rounded-sm">
+        <div className="flex items-center gap-6 border py-1 px-4 rounded-sm">
           {(["newest", "popular", "trending"] as Preset[]).map((item) => (
             <div
               key={item}
-              className={cn("uppercase rounded-sm text-sm", preset === item ? "text-white" : "")}
+              className={cn(
+                "uppercase rounded-sm text-sm hover:text-primary",
+                preset === item ? "text-primary" : ""
+              )}
               onClick={() => handlePreset(item)}
             >
               {item}
@@ -59,12 +62,12 @@ export default function MainSection({ initialData }: { initialData: SearchRespon
           ))}
         </div>
         {/* Paging */}
-        <div className="flex items-center gap-4 bg-amber-500  rounded-sm">
-          <Button onClick={() => handlePrevious()} disabled={currentPage <= 1} variant={"ghost"}>
+        <div className="flex items-center gap-4 border rounded-sm">
+          <Button onClick={() => handlePrevious()} disabled={currentPage <= 1} variant={"none"}>
             <ChevronLeft />
           </Button>
-          <div>{currentPage}</div>
-          <Button onClick={() => handleNext()} disabled={!data.hasNextPage!} variant={"ghost"}>
+          <div className="text-sm">{currentPage}</div>
+          <Button onClick={() => handleNext()} disabled={!data.hasNextPage!} variant={"none"}>
             <ChevronRight />
           </Button>
         </div>

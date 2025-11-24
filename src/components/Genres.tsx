@@ -8,21 +8,23 @@ import {
 import { GENRES } from "@/constants/genres";
 
 export default function Genres() {
-  // TODO: Fix overlapped container between 'Content' and 'Buttons'
   return (
-    <Carousel>
+    <Carousel className="px-11">
       {/* Content */}
       <CarouselContent className="gap-2">
         {GENRES.map((item) => (
-          <CarouselItem key={item} className="rounded-sm border-2 py-2 px-7 text-xs" noBasis={true}>
+          <CarouselItem
+            key={item}
+            className="rounded-sm py-2 px-7 text-xs bg-secondary/75"
+            noBasis={true}
+          >
             {item}
           </CarouselItem>
         ))}
       </CarouselContent>
-
       {/* Buttons */}
-      <CarouselPrevious placement="side" />
-      <CarouselNext placement="side" />
+      <CarouselPrevious placement="side" variant={"default"} />
+      <CarouselNext placement="side" variant={"default"} />
     </Carousel>
   );
 }

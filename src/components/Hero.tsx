@@ -57,12 +57,13 @@ export default async function Hero() {
             return (
               <CarouselItem
                 key={anime.id}
-                className="flex items-end h-[350px] lg:h-[480px] rounded-sm w-full bg-cover bg-center text-white"
+                className="relative flex items-end h-[350px] lg:h-[480px] rounded-sm w-full bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${anime.bannerImage})`,
                 }}
               >
-                <div className="flex gap-4 lg:gap-0 flex-col lg:flex-row p-5">
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/40 to-black/80"></div>
+                <div className="flex z-10 gap-4 lg:gap-0 flex-col lg:flex-row p-5">
                   {/* Badges, Title, & Description */}
                   <div className="flex flex-1 flex-col gap-2 ">
                     <div className="flex gap-1 ">
@@ -71,14 +72,14 @@ export default async function Hero() {
                         if (!value) return;
 
                         return (
-                          <Badge key={key} icon={Icon} className="rounded-sm text-black">
+                          <Badge key={key} icon={Icon} className="rounded-sm">
                             {value}
                           </Badge>
                         );
                       })}
                     </div>
                     <h1 className="text-3xl lg:text-4xl font-semibold line-clamp-2">{title}</h1>
-                    <span className="line-clamp-2 lg:line-clamp-3">
+                    <span className="line-clamp-2 lg:line-clamp-3 text-sm">
                       {parse(removeBrTags(description))}
                     </span>
                   </div>
@@ -100,8 +101,8 @@ export default async function Hero() {
       </CarouselContent>
 
       {/* Buttons */}
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious variant={"secondary"} />
+      <CarouselNext variant={"secondary"} />
     </Carousel>
   );
 }

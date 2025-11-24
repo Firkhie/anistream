@@ -37,15 +37,20 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="fixed left-0 top-16 h-full border-r-2 flex flex-col gap-3 w-20 z-50">
+    <div className="fixed left-0 top-16 h-full border-r flex flex-col w-20 z-50">
       {sidebarItems.map((item) => (
         <Link
           key={item.title}
           href={item.path}
-          className="flex flex-col gap-2 items-center px-2 py-3"
+          className={cn(
+            "flex flex-col gap-2 items-center px-2 py-5 border-b",
+            pathname === item.path && "border-r-3 border-r-primary"
+          )}
         >
-          <item.icon className="w-5 h-5" />
-          <span className={cn("text-xs", pathname === item.path && "uppercase")}>{item.title}</span>
+          <item.icon className={cn("w-5 h-5", pathname === item.path && "text-primary")} />
+          <span className={cn("text-xs", pathname === item.path && "text-primary")}>
+            {item.title}
+          </span>
         </Link>
       ))}
     </div>

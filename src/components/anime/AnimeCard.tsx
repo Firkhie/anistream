@@ -26,23 +26,33 @@ export default function AnimeCard({ ...anime }: AnimeBasic) {
     <div className="flex flex-col gap-2">
       {/* Image */}
       <div className="relative aspect-2/3">
-        <Image src={anime.coverImage!} alt={title} fill className="rounded-sm" />
+        <Image
+          src={anime.coverImage!}
+          alt={title}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          fill
+          className="rounded-sm"
+        />
         <div className="absolute left-2 bottom-2 flex gap-0.5">
           {anime.currentEpisode && (
-            <Badge icon={ClosedCaption} className="rounded-l-sm">
+            <Badge icon={ClosedCaption} className="rounded-l-sm bg-primary/75 text-foreground">
               {anime.currentEpisode}
             </Badge>
           )}
-          {anime.totalEpisodes && <Badge className="rounded-r-sm">{anime.totalEpisodes}</Badge>}
+          {anime.totalEpisodes && (
+            <Badge className="rounded-r-sm bg-primary/75 text-foreground">
+              {anime.totalEpisodes}
+            </Badge>
+          )}
         </div>
       </div>
       {/* Title and Status */}
       <div className="flex gap-2 items-center">
         <div
           style={{ backgroundColor: statusColor }}
-          className="rounded-full shrink-0 w-2 h-2"
+          className="rounded-full shrink-0 w-2.5 h-2.5"
         ></div>
-        <span className="line-clamp-1 text-sm">{title}</span>
+        <span className="line-clamp-1 text-sm font-semibold">{title}</span>
       </div>
       {/* Badges */}
       <div className="flex gap-1">
