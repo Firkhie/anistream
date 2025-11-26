@@ -1,4 +1,4 @@
-import DashboardContent from "@/components/DashboardContent";
+import DashboardContent from "@/components/dashboard-content";
 import Genres from "@/components/Genres";
 import Hero from "@/components/Hero";
 import { Suspense } from "react";

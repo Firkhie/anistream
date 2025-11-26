@@ -2,10 +2,10 @@
 
 import useAnimeByParams from "@/hooks/useAnimeByParams";
 import { useSearchParams } from "next/navigation";
-import AnimeCardSkeletonList from "./AnimeCardSkeleton";
-import AnimeCardList from "./AnimeCardList";
+import AnimeCardSkeletonList from "./anime/AnimeCardSkeleton";
+import AnimeCardList from "./anime/AnimeCardList";
 
-export default function AnimeSearchLoader() {
+export default function SearchLoader() {
   const searchParams = useSearchParams();
   const filters = Object.fromEntries(searchParams.entries());
 
