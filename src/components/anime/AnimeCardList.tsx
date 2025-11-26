@@ -1,7 +1,7 @@
 import { SearchResponse } from "@/types";
-import AnimeCard from "../anime/AnimeCard";
+import AnimeCard from "./AnimeCard";
 
-export default function MainAnimeList({ results }: { results: SearchResponse["results"] }) {
+export default function AnimeCardList({ results }: { results: SearchResponse["results"] }) {
   if (results.length < 1) return <div>Anime not found.</div>;
 
   return (

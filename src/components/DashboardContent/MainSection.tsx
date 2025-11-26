@@ -1,32 +1,20 @@
 "use client";
 
 import { SearchResponse } from "@/types";
-import { useEffect, useState } from "react";
-import getAnimeByPreset, { Preset } from "@/lib/getAnimeByPreset";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import MainAnimeList from "./MainAnimeList";
 import AnimeCardSkeletonList from "../anime/AnimeCardSkeleton";
 import { Button } from "../ui/Button";
 import { cn } from "@/lib/utils";
+import useAnimeByPreset from "@/hooks/useAnimeByPreset";
+import { Preset } from "@/lib/getAnimeByPreset";
+import AnimeCardList from "../anime/AnimeCardList";
 
 export default function MainSection({ initialData }: { initialData: SearchResponse }) {
-  const [data, setData] = useState(initialData);
   const [preset, setPreset] = useState<Preset>("newest");
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
 
-  // UseEffects
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-
-      const data: SearchResponse = await getAnimeByPreset({ preset, page: currentPage });
-      setData(data);
-
-      setLoading(false);
-    }
-    fetchData();
-  }, [preset, currentPage]);
+  const { data, loading } = useAnimeByPreset({ preset, page: currentPage, initialData });
 
   // Handlers
   const handlePreset = (preset: Preset) => {
@@ -67,13 +55,13 @@ export default function MainSection({ initialData }: { initialData: SearchRespon
             <ChevronLeft />
           </Button>
           <div className="text-sm">{currentPage}</div>
-          <Button onClick={() => handleNext()} disabled={!data.hasNextPage!} variant={"none"}>
+          <Button onClick={() => handleNext()} disabled={!data.hasNextPage} variant={"none"}>
             <ChevronRight />
           </Button>
         </div>
       </div>
       {/* Content */}
-      {loading ? <AnimeCardSkeletonList count={5} /> : <MainAnimeList results={data.results} />}
+      {loading ? <AnimeCardSkeletonList count={5} /> : <AnimeCardList results={data.results} />}
     </div>
   );
 }

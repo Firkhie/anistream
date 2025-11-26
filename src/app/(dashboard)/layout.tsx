@@ -5,7 +5,8 @@ import "@/app/globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import ThemeProvider from "@/components/ThemeProvider";
+import { Toaster } from "@/components/ui/Sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
           <div className="pt-16 pl-20 flex min-h-screen justify-center">
             <div className="flex flex-col max-w-[1536px] w-full p-4">
               <main className="flex-1">{children}</main>
+              <Toaster />
               <Footer />
             </div>
           </div>

@@ -14,11 +14,11 @@ export default function Genres() {
       <CarouselContent className="gap-2">
         {GENRES.map((item) => (
           <CarouselItem
-            key={item}
+            key={item.label}
             className="rounded-sm py-2 px-7 text-xs bg-secondary/75"
             noBasis={true}
           >
-            {item}
+            {item.value}
           </CarouselItem>
         ))}
       </CarouselContent>
