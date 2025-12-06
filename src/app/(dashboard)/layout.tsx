@@ -31,8 +31,8 @@ export default function RootLayout({
         >
           <Navbar />
           <Sidebar />
-          <div className="pt-16 pl-20 flex min-h-screen justify-center">
-            <div className="flex flex-col max-w-[1536px] w-full p-4">
+          <div className="flex min-h-screen justify-center pt-16 md:pl-20">
+            <div className="flex w-full max-w-[1536px] flex-col p-4">
               <main className="flex-1">{children}</main>
               <Toaster />
               <Footer />
