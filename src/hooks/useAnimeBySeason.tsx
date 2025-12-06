@@ -3,9 +3,13 @@
 import { toast } from "sonner";
 import { SearchResponse } from "@/types";
 import { useEffect, useState } from "react";
-import getAnimeByParams from "@/lib/getAnimeByParams";
+import getAnimeBySeason from "@/lib/getAnimeBySeason";
 
-export default function useAnimeByParams({ filters }: { filters: Record<string, string> }) {
+export default function useAnimeBySeason({
+  season,
+}: {
+  season: "winter" | "spring" | "summer" | "fall";
+}) {
   const [data, setData] = useState<SearchResponse>({
     currentPage: null,
     hasNextPage: null,
@@ -17,17 +21,17 @@ export default function useAnimeByParams({ filters }: { filters: Record<string, 
     async function fetchData() {
       try {
         setLoading(true);
-        const data: SearchResponse = await getAnimeByParams({ filters });
+        const data: SearchResponse = await getAnimeBySeason({ season });
         setData(data);
       } catch (error) {
-        console.log("[ERROR_QUERY]: ", error);
+        console.log("[ERROR_SEASON]: ", error);
         toast.error("Fetch anime failed.");
       } finally {
         setLoading(false);
       }
     }
     fetchData();
-  }, [JSON.stringify(filters)]);
+  }, [season]);
 
   return { data, loading };
 }

@@ -2,6 +2,9 @@ import { AnimeBasic } from "@/types";
 import Image from "next/image";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
+import parse from "html-react-parser";
+import { removeBrTags } from "@/lib/utils";
+import AnimeButton from "./AnimeButton";
 
 export default function AnimeInfoCard({ ...anime }: AnimeBasic) {
   const title =
@@ -10,34 +13,51 @@ export default function AnimeInfoCard({ ...anime }: AnimeBasic) {
     anime.title?.english ||
     anime.title?.native ||
     "Untitled";
-
   const subTitle =
     anime.title?.native ||
     anime.title?.romaji ||
     anime.title?.userPreferred ||
     anime.title?.english ||
     "Untitled";
+  const description = anime.description || "No description found.";
+  const textColor = anime.color || "white";
+
   return (
-    <div className="flex gap-2">
-      <div className="flex flex-col gap-1">
-        <Image width={80} height={120} alt={title} src={anime.coverImage!} />
-        <div className="flex gap-1">
-          <Button>MAL</Button>
-          <Button>Anilist</Button>
+    <div className="flex gap-2 rounded-sm border p-2">
+      {/* Left Side */}
+      <div className="flex flex-col gap-2">
+        <div className="relative aspect-2/3">
+          <Image
+            src={anime.coverImage!}
+            alt={title}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            fill
+            className="rounded-sm"
+          />
+        </div>
+        <div className="flex gap-2">
+          <AnimeButton icon="anilist" />
+          <AnimeButton icon="mal" />
         </div>
       </div>
-      <div className="flex flex-col justify-between">
-        <div className="flex flex-col gap-1.5">
-          <h3>{title}</h3>
-          <span>{subTitle}</span>
-          <p>{anime.description}</p>
+      {/* Right Side */}
+      <div className="flex flex-col justify-between overflow-hidden">
+        <div className="flex flex-col gap-2">
+          <h3 className="line-clamp-2 text-xl font-semibold">{title}</h3>
+          <span className="line-clamp-2 text-sm font-light" style={{ color: textColor }}>
+            {subTitle}
+          </span>
+          <p className="text-muted-foreground line-clamp-4 text-sm">
+            {parse(removeBrTags(description))}
+          </p>
         </div>
-        <div className="flex gap-1">
-          {anime.genres.map((genre) => (
-            <Badge key={genre} className="rounded-sm">
-              {genre}
-            </Badge>
-          ))}
+        <div className="scrollbar-hidden flex gap-1.5 overflow-x-scroll">
+          {anime.genres &&
+            anime.genres.map((genre) => (
+              <Badge key={genre} className="line rounded-sm px-4 py-1">
+                {genre}
+              </Badge>
+            ))}
         </div>
       </div>
     </div>
