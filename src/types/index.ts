@@ -113,10 +113,17 @@ export type StaffName = {
   userPreferred: string | null;
 };
 
-export type SearchResponse = {
+export type BaseResponse = {
   currentPage: number | null;
   hasNextPage: boolean | null;
+};
+
+export type SearchResponse = BaseResponse & {
   results: AnimeBasic[];
+};
+
+export type ScheduleResponse = BaseResponse & {
+  results: { date: string; items: AnimeBasic[] }[];
 };
 
 export type MediaFormat =

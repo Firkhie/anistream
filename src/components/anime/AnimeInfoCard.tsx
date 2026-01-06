@@ -1,9 +1,8 @@
 import { AnimeBasic } from "@/types";
 import Image from "next/image";
-import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
 import parse from "html-react-parser";
-import { removeBrTags } from "@/lib/utils";
+import { sanitizeHtmlString } from "@/lib/utils";
 import AnimeButton from "./AnimeButton";
 
 export default function AnimeInfoCard({ ...anime }: AnimeBasic) {
@@ -48,7 +47,7 @@ export default function AnimeInfoCard({ ...anime }: AnimeBasic) {
             {subTitle}
           </span>
           <p className="text-muted-foreground line-clamp-4 text-sm">
-            {parse(removeBrTags(description))}
+            {parse(sanitizeHtmlString(description))}
           </p>
         </div>
         <div className="scrollbar-hidden flex gap-1.5 overflow-x-scroll">
