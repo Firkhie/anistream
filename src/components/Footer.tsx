@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <div className="flex pt-16 flex-col gap-3">
+    <div className="flex pt-16 lg:pt-20 flex-col gap-3">
       <Logo />
       {/* Desc */}
       <span className="text-xs lg:text-sm text-muted-foreground/75">

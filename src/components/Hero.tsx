@@ -9,7 +9,7 @@ import getAnimeByPreset from "@/lib/getAnimeByPreset";
 import { SearchResponse } from "@/types";
 import parse from "html-react-parser";
 import { Button } from "./ui/Button";
-import { removeBrTags } from "@/lib/utils";
+import { sanitizeHtmlString } from "@/lib/utils";
 import {
   Calendar1,
   ClosedCaption,
@@ -39,7 +39,7 @@ export default async function Hero() {
   const episodes = ``;
 
   return (
-    <Carousel opts={{ loop: true }} className="rounded-sm overflow-hidden">
+    <Carousel opts={{ loop: true }} className="overflow-hidden rounded-sm">
       {/* Content */}
       <CarouselContent>
         {data.results
@@ -57,16 +57,16 @@ export default async function Hero() {
             return (
               <CarouselItem
                 key={anime.id}
-                className="relative flex items-end h-[350px] lg:h-[480px] rounded-sm w-full bg-cover bg-center"
+                className="relative flex h-[350px] w-full items-end rounded-sm bg-cover bg-center lg:h-[480px]"
                 style={{
                   backgroundImage: `url(${anime.bannerImage})`,
                 }}
               >
                 <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/40 to-black/80"></div>
-                <div className="flex z-10 gap-4 lg:gap-0 flex-col lg:flex-row p-5">
+                <div className="z-10 w-full flex flex-col gap-4 p-5 lg:flex-row lg:gap-0">
                   {/* Badges, Title, & Description */}
-                  <div className="flex flex-1 flex-col gap-2 ">
-                    <div className="flex gap-1 ">
+                  <div className="flex flex-1 flex-col gap-2">
+                    <div className="flex gap-1">
                       {heroBadges.map(({ icon: Icon, key }) => {
                         const value = anime[key];
                         if (!value) return;
@@ -78,13 +78,13 @@ export default async function Hero() {
                         );
                       })}
                     </div>
-                    <h1 className="text-3xl lg:text-4xl font-semibold line-clamp-2">{title}</h1>
-                    <span className="line-clamp-2 lg:line-clamp-3 text-sm">
-                      {parse(removeBrTags(description))}
+                    <h1 className="line-clamp-2 text-3xl font-semibold lg:text-4xl">{title}</h1>
+                    <span className="line-clamp-2 text-sm lg:line-clamp-3">
+                      {parse(sanitizeHtmlString(description))}
                     </span>
                   </div>
                   {/* Buttons */}
-                  <div className="flex flex-1 gap-2 items-end lg:justify-end">
+                  <div className="flex flex-1 items-end gap-2 lg:justify-end">
                     <Button size={"lg"} variant={"secondary"}>
                       <Info />
                       Details
