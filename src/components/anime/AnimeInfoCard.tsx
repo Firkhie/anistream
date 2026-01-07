@@ -34,9 +34,9 @@ export default function AnimeInfoCard({ ...anime }: AnimeBasic) {
             className="rounded-sm"
           />
         </div>
-        <div className="flex gap-2">
-          <AnimeButton icon="anilist" />
-          <AnimeButton icon="mal" />
+        <div className="flex w-full gap-2">
+          <AnimeButton size="medium" icon="anilist" />
+          <AnimeButton size="medium" icon="mal" />
         </div>
       </div>
       {/* Right Side */}

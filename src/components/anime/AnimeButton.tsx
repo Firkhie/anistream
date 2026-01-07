@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const buttonIcons = {
   anilist: (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 lg:h-5 lg:w-5" viewBox="0 0 24 24">
@@ -17,10 +19,28 @@ const buttonIcons = {
   ),
 };
 
-export default function AnimeButton({ icon }: { icon: "anilist" | "mal" }) {
+const buttonSizes = {
+  large: "px-6 h-10",
+  medium: "px-5 h-8",
+};
+
+export default function AnimeButton({
+  icon,
+  size,
+}: {
+  icon: "anilist" | "mal";
+  size: "large" | "medium";
+}) {
   const Icon = buttonIcons[icon];
+
   return (
-    <a className="rounded-sm border flex items-center justify-center px-5" href="/">
+    <a
+      className={cn(
+        "bg-secondary flex w-full items-center justify-center rounded-sm",
+        buttonSizes[size],
+      )}
+      href="/"
+    >
       {Icon}
     </a>
   );
