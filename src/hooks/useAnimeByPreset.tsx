@@ -5,22 +5,12 @@ import getAnimeByPreset, { Preset } from "@/lib/getAnimeByPreset";
 import { SearchResponse } from "@/types";
 import { useEffect, useState } from "react";
 
-export default function useAnimeByPreset({
-  preset,
-  page,
-  initialData,
-}: {
-  preset: Preset;
-  page: number;
-  initialData?: SearchResponse;
-}) {
-  const [data, setData] = useState<SearchResponse>(
-    initialData || {
-      currentPage: null,
-      hasNextPage: null,
-      results: [],
-    }
-  );
+export default function useAnimeByPreset({ preset, page }: { preset: Preset; page: number }) {
+  const [data, setData] = useState<SearchResponse>({
+    currentPage: null,
+    hasNextPage: null,
+    results: [],
+  });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

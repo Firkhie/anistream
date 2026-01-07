@@ -30,13 +30,13 @@ export default function AnimeRankCard({ ...anime }: AnimeBasic) {
   const textColor = anime.color || "black";
 
   return (
-    <div className="flex shrink-0 gap-2 h-24 rounded-sm overflow-hidden bg-secondary/50">
+    <div className="bg-secondary/75 flex h-24 shrink-0 gap-2 overflow-hidden rounded-sm">
       {/* Image */}
       <Image src={anime.coverImage!} alt={title} width="72" height="96" className="object-cover" />
       {/* Content */}
       <div className="flex flex-col justify-between gap-1 py-2 pr-2">
         <div>
-          <span className="line-clamp-1 font-semibold text-sm">{title}</span>
+          <span className="line-clamp-1 text-sm font-semibold">{title}</span>
           <span className="line-clamp-1 text-xs" style={{ color: textColor }}>
             {subTitle}
           </span>

@@ -2,7 +2,7 @@
 
 import useAnimeByParams from "@/hooks/useAnimeByParams";
 import { useSearchParams } from "next/navigation";
-import AnimeCardSkeletonList from "./anime/AnimeCardSkeleton";
+import AnimeCardSkeleton from "./anime/AnimeCardSkeleton";
 import AnimeCardList from "./anime/AnimeCardList";
 
 export default function SearchLoader() {
@@ -15,11 +15,11 @@ export default function SearchLoader() {
   return (
     <>
       {loading ? (
-        <AnimeCardSkeletonList count={7} />
+        <AnimeCardSkeleton count={7} />
       ) : (
         <div className="flex flex-col gap-4">
           {query && (
-            <p className="text-sm text-muted-foreground font-semibold">
+            <p className="text-muted-foreground text-sm font-semibold">
               Search result: <span className="text-foreground">{query}</span>
             </p>
           )}

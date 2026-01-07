@@ -13,7 +13,7 @@ function Badge({
   return (
     <div
       className={cn(
-        "text-muted-foreground bg-secondary/75 flex shrink-0 items-center gap-1.5 px-2 py-0.5",
+        "text-muted-foreground bg-muted-foreground/15 flex shrink-0 items-center gap-1.5 px-2 py-0.5",
         className,
       )}
     >

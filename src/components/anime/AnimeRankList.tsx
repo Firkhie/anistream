@@ -33,14 +33,14 @@ export default function AnimeRankList({
   const { name, icon: Icon } = titles[sectionType];
   const IconButton = showMore ? ChevronUp : ChevronDown;
   return (
-    <div className="flex h-fit flex-col gap-3 p-3 rounded-sm bg-secondary/25">
+    <div className="bg-secondary/50 flex h-fit flex-col gap-3 rounded-sm p-3">
       {/* Title */}
-      <div className="flex gap-3 items-center">
+      <div className="flex items-center gap-3">
         <Icon className="h-5 w-5" />
-        <span className="uppercase font-semibold text-xl">{name}</span>
+        <span className="text-lg font-semibold uppercase">{name}</span>
       </div>
       {/* Content */}
-      <div className={cn("flex flex-col gap-1", showMore ? "overflow-y-auto h-[598px]" : "h-fit")}>
+      <div className={cn("flex flex-col gap-1", showMore ? "h-[598px] overflow-y-auto" : "h-fit")}>
         {results.slice(0, count).map((anime) => (
           <AnimeRankCard key={anime.id} {...anime} />
         ))}

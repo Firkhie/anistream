@@ -62,8 +62,8 @@ export default async function Hero() {
                   backgroundImage: `url(${anime.bannerImage})`,
                 }}
               >
-                <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/40 to-black/80"></div>
-                <div className="z-10 w-full flex flex-col gap-4 p-5 lg:flex-row lg:gap-0">
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/50 to-black/75"></div>
+                <div className="z-10 flex w-full flex-col gap-4 p-5 lg:flex-row lg:gap-0">
                   {/* Badges, Title, & Description */}
                   <div className="flex flex-1 flex-col gap-2">
                     <div className="flex gap-1">
@@ -72,7 +72,7 @@ export default async function Hero() {
                         if (!value) return;
 
                         return (
-                          <Badge key={key} icon={Icon} className="rounded-sm">
+                          <Badge key={key} icon={Icon} className="rounded-sm text-white/75">
                             {value}
                           </Badge>
                         );

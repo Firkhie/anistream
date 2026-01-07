@@ -1,20 +1,19 @@
 "use client";
 
-import { SearchResponse } from "@/types";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import AnimeCardSkeletonList from "../anime/AnimeCardSkeleton";
+import AnimeCardSkeleton from "../anime/AnimeCardSkeleton";
 import { Button } from "../ui/Button";
 import { cn } from "@/lib/utils";
 import useAnimeByPreset from "@/hooks/useAnimeByPreset";
 import { Preset } from "@/lib/getAnimeByPreset";
 import AnimeCardList from "../anime/AnimeCardList";
 
-export default function MainSection({ initialData }: { initialData: SearchResponse }) {
+export default function MainSection() {
   const [preset, setPreset] = useState<Preset>("newest");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, loading } = useAnimeByPreset({ preset, page: currentPage, initialData });
+  const { data, loading } = useAnimeByPreset({ preset, page: currentPage });
 
   // Handlers
   const handlePreset = (preset: Preset) => {
@@ -35,33 +34,33 @@ export default function MainSection({ initialData }: { initialData: SearchRespon
       {/* Buttons */}
       <div className="flex justify-between">
         {/* Filter */}
-        <div className="flex items-center gap-6 border py-1 px-4 rounded-sm">
+        <div className="flex items-center divide-x rounded-sm border">
           {(["newest", "popular", "trending"] as Preset[]).map((item) => (
-            <div
+            <button
               key={item}
               className={cn(
-                "uppercase rounded-sm text-sm hover:text-primary",
-                preset === item ? "text-primary" : ""
+                "hover:text-primary px-4 py-1 text-sm uppercase transition",
+                preset === item ? "text-primary" : "",
               )}
               onClick={() => handlePreset(item)}
             >
               {item}
-            </div>
+            </button>
           ))}
         </div>
         {/* Paging */}
-        <div className="flex items-center gap-4 border rounded-sm">
+        <div className="flex items-center gap-1 rounded-sm border">
           <Button onClick={() => handlePrevious()} disabled={currentPage <= 1} variant={"none"}>
             <ChevronLeft />
           </Button>
-          <div className="text-sm">{currentPage}</div>
+          <div className="border-x px-4 text-sm">{currentPage}</div>
           <Button onClick={() => handleNext()} disabled={!data.hasNextPage} variant={"none"}>
             <ChevronRight />
           </Button>
         </div>
       </div>
       {/* Content */}
-      {loading ? <AnimeCardSkeletonList count={5} /> : <AnimeCardList results={data.results} />}
+      {loading ? <AnimeCardSkeleton count={5} /> : <AnimeCardList results={data.results} />}
     </div>
   );
 }
