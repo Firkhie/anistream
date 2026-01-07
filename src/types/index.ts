@@ -34,6 +34,15 @@ export type AnimeBasic = {
   nextAiringEpisode: AiringSchedule | null;
 };
 
+export type AnimeEpisode = {
+  title: string | null;
+  episode: number | null;
+  description: string | null;
+  image: string | null;
+  rating: string | null;
+  airDate: string | null;
+};
+
 export type MediaVariables = {
   page: number;
   perPage: number;
@@ -124,6 +133,10 @@ export type SearchResponse = BaseResponse & {
 
 export type ScheduleResponse = BaseResponse & {
   results: { date: string; items: AnimeBasic[] }[];
+};
+
+export type CharacterResponse = BaseResponse & {
+  results: Character[];
 };
 
 export type MediaFormat =

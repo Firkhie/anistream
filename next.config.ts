@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "s4.anilist.co",
       },
+      {
+        hostname: "artworks.thetvdb.com",
+      },
     ],
   },
 };

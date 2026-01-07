@@ -13,6 +13,7 @@ import OverviewContent from "./OverviewContent";
 import WatchContent from "./WatchContent";
 import CharactersContent from "./CharactersContent";
 import AnimeCardCarousel from "../anime/AnimeCardCarousel";
+import { useParams } from "next/navigation";
 
 type DetailPreset = "overview" | "watch" | "characters";
 
@@ -26,8 +27,9 @@ const containerBadges: {
   { key: "rating", icon: Star },
 ];
 
-export default function DetailContent({ slug }: { slug: string }) {
-  const { data, loading } = useAnimeDetailById({ id: slug });
+export default function DetailContent() {
+  const { slug } = useParams();
+  const { data, loading } = useAnimeDetailById({ id: slug as string });
   const [preset, setPreset] = useState<DetailPreset>("overview");
 
   const title =
@@ -72,11 +74,11 @@ export default function DetailContent({ slug }: { slug: string }) {
               </div>
 
               {/* Buttonss */}
-              <Button size={"lg"} variant={"secondary"}>
+              <Button size={"lg"} variant={"custom"}>
                 <Play />
                 Watch Now
               </Button>
-              <Button size={"lg"} variant={"secondary"}>
+              <Button size={"lg"} variant={"custom"}>
                 <NotebookPen />
                 Add To List
               </Button>
@@ -86,7 +88,7 @@ export default function DetailContent({ slug }: { slug: string }) {
               </div>
 
               {/* Meta Info */}
-              <div className="bg-secondary flex flex-col gap-2 rounded-sm p-3 text-sm">
+              <div className="bg-secondary/50 flex flex-col gap-2 rounded-sm p-3 text-sm">
                 {data?.status && (
                   <>
                     <span className="font-bold">Status</span>
@@ -151,7 +153,9 @@ export default function DetailContent({ slug }: { slug: string }) {
                   <>
                     <span className="font-bold">Studios</span>
                     {data.studios.map((studio) => (
-                      <span className="font-extralight">{studio}</span>
+                      <span key={studio} className="font-extralight">
+                        {studio}
+                      </span>
                     ))}
                   </>
                 )}
@@ -188,7 +192,7 @@ export default function DetailContent({ slug }: { slug: string }) {
                   </div>
                 ))}
               </div>
-              <div className="bg-secondary flex flex-col gap-2 rounded-sm p-3">
+              <div className="bg-secondary/50 flex flex-col gap-2 rounded-sm p-3">
                 {preset === "overview" && <OverviewContent data={data} />}
                 {preset === "watch" && <WatchContent />}
                 {preset === "characters" && <CharactersContent />}

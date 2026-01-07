@@ -15,6 +15,7 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
         ></iframe>
       </div>
 
+      {/* TODO: NEED TO BE CHANGED */}
       {/* Characters Section */}
       {data?.characters && data.characters.length > 0 && (
         <div className="flex flex-col gap-y-3">
@@ -63,7 +64,7 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
                           {actor.language ?? "-"}
                         </p>
                       </div>
-                      <div className="relative h-24 w-[72px] flex-shrink-0 overflow-hidden rounded-r-sm">
+                      <div className="relative h-24 w-[72px] shrink-0 overflow-hidden rounded-r-sm">
                         <Image
                           alt="Image"
                           src={actor.image!}

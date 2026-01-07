@@ -36,7 +36,7 @@ export default function AnimeButton({
   return (
     <a
       className={cn(
-        "bg-secondary flex w-full items-center justify-center rounded-sm",
+        "bg-secondary/50 flex w-full items-center justify-center rounded-sm",
         buttonSizes[size],
       )}
       href="/"
