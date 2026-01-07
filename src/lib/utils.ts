@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
+import { FuzzyDate } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -23,4 +24,12 @@ export function formatUnixTime(input: number) {
 export function formatUnixDate(input: number) {
   if (!input) return "-";
   return format(new Date(input * 1000), "eeee, d MMM yyyy");
+}
+
+export function formatPlainDate(input: FuzzyDate) {
+  if (!input || !input.year || !input.month || !input.day) return "-";
+
+  const date = new Date(input.year, input.month - 1, input.day);
+
+  return format(date, "eeee, d MMM yyyy");
 }
