@@ -25,14 +25,8 @@ export default function AnimeInfoCard({ ...anime }: AnimeBasic) {
     <div className="flex gap-2 rounded-sm border p-2">
       {/* Left Side */}
       <div className="flex flex-col gap-2">
-        <div className="relative aspect-2/3">
-          <Image
-            src={anime.coverImage!}
-            alt={title}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            fill
-            className="rounded-sm"
-          />
+        <div className="relative aspect-2/3 h-48">
+          <Image src={anime.coverImage!} alt={title} fill className="rounded-sm" />
         </div>
         <div className="flex w-full gap-2">
           <AnimeButton size="medium" icon="anilist" />

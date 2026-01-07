@@ -1,15 +1,8 @@
-import { cn } from "@/lib/utils";
 import { Skeleton } from "../ui/Skeleton";
 
-export default function AnimeCardSkeleton({
-  count,
-  className,
-}: {
-  count: number;
-  className?: string;
-}) {
+export default function AnimeCardSkeleton({ count }: { count: number }) {
   return (
-    <div className={cn("grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-4", className)}>
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-4">
       {Array.from({ length: count }).map((_, i) => (
         <div key={i} className="flex flex-col gap-2">
           {/* Image */}
