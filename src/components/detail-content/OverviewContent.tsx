@@ -32,7 +32,7 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
               return (
                 <div
                   key={char.id}
-                  className="bg-secondary/50 flex h-24 justify-between rounded-md text-xs sm:text-[13px]"
+                  className="bg-secondary/50 flex h-24 justify-between rounded-sm text-xs sm:text-[13px]"
                 >
                   {/* Character Info */}
                   <div className="relative flex gap-x-1">

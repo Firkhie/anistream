@@ -30,7 +30,7 @@ export default function Genres() {
         {GENRES.map((item) => (
           <CarouselItem
             key={item.label}
-            className="bg-secondary/75 rounded-sm px-7 py-2 text-xs"
+            className="bg-secondary/75 hover:bg-primary/15 cursor-pointer rounded-sm px-7 py-2 text-xs"
             noBasis={true}
             onClick={() => handleGenre(item.value)}
           >

@@ -1,8 +1,9 @@
 import { MEDIA_STATUSES_COLOR } from "@/constants/media";
 import { AnimeBasic } from "@/types";
 import Image from "next/image";
-import { ClosedCaption, LucideIcon, Monitor, Star } from "lucide-react";
+import { ClosedCaption, LucideIcon, Monitor, Play, Star } from "lucide-react";
 import { Badge } from "../ui/Badge";
+import Link from "next/link";
 
 const cardBadges: {
   key: "format" | "rating" | "totalEpisodes" | "currentEpisode";
@@ -25,34 +26,43 @@ export default function AnimeCard({ ...anime }: AnimeBasic) {
   return (
     <div className="flex flex-col gap-2">
       {/* Image */}
-      <div className="relative aspect-2/3">
+      <Link href={`detail/${anime.id}`} className="group relative aspect-2/3">
         <Image
           src={anime.coverImage!}
           alt={title}
-          sizes="(max-width: 768px) 100vw, 50vw"
           fill
-          className="rounded-sm"
+          className="rounded-sm transition-all duration-100 group-hover:blur-xs"
         />
-        <div className="absolute left-2 bottom-2 flex gap-0.5">
+        {/* Badges */}
+        <div className="absolute bottom-2 left-2 flex gap-0.5">
           {anime.currentEpisode && (
-            <Badge icon={ClosedCaption} className="rounded-l-sm bg-primary/75 text-foreground">
+            <Badge icon={ClosedCaption} className="bg-primary/75 text-foreground rounded-l-sm">
               {anime.currentEpisode}
             </Badge>
           )}
           {anime.totalEpisodes && (
-            <Badge className="rounded-r-sm bg-primary/75 text-foreground">
+            <Badge className="bg-primary/75 text-foreground rounded-r-sm">
               {anime.totalEpisodes}
             </Badge>
           )}
         </div>
-      </div>
+        {/* Play icon */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-100 group-hover:opacity-100">
+          <Play className="h-10 w-10 text-white" />
+        </div>
+      </Link>
       {/* Title and Status */}
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-2">
         <div
           style={{ backgroundColor: statusColor }}
-          className="rounded-full shrink-0 w-2.5 h-2.5"
+          className="h-2.5 w-2.5 shrink-0 rounded-full"
         ></div>
-        <span className="line-clamp-1 text-sm font-semibold">{title}</span>
+        <Link
+          href={`detail/${anime.id}`}
+          className="hover:text-primary line-clamp-1 text-sm font-semibold"
+        >
+          {title}
+        </Link>
       </div>
       {/* Badges */}
       <div className="flex gap-1">

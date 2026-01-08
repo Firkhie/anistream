@@ -18,9 +18,9 @@ export default function WatchContent() {
         <Link
           href="/"
           key={eps.episode}
-          className="bg-secondary/50 flex h-[100px] rounded-md hover:opacity-50"
+          className="bg-secondary/50 flex h-[100px] rounded-sm hover:opacity-50"
         >
-          <div className="relative w-[148px] shrink-0 overflow-hidden rounded-l-md">
+          <div className="relative w-[148px] shrink-0 overflow-hidden rounded-l-sm">
             <Image
               alt="Image"
               src={eps.image ?? "/assets/not-found.png"}
@@ -28,7 +28,7 @@ export default function WatchContent() {
               className="object-cover object-center"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-            <div className="bg-primary/80 absolute bottom-1 left-1 rounded-md px-2 py-1 text-xs">
+            <div className="bg-primary/80 absolute bottom-1 left-1 rounded-sm px-2 py-1 text-xs">
               EP {eps.episode || "N/A"}
             </div>
           </div>

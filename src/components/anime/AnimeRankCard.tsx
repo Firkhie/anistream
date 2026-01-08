@@ -2,6 +2,8 @@ import { AnimeBasic } from "@/types";
 import { ClosedCaption, LucideIcon, Monitor, Star } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "../ui/Badge";
+import Link from "next/link";
+import { useState } from "react";
 
 const containerBadges: {
   key: "format" | "currentEpisode" | "rating" | "year";
@@ -13,6 +15,8 @@ const containerBadges: {
 ];
 
 export default function AnimeRankCard({ ...anime }: AnimeBasic) {
+  const [hover, setHover] = useState(false);
+
   const title =
     anime.title?.userPreferred ||
     anime.title?.english ||
@@ -30,7 +34,16 @@ export default function AnimeRankCard({ ...anime }: AnimeBasic) {
   const textColor = anime.color || "black";
 
   return (
-    <div className="bg-secondary/75 flex h-24 shrink-0 gap-2 overflow-hidden rounded-sm">
+    <Link
+      href={`/detail/${anime.id}`}
+      className="bg-secondary/75 flex h-24 shrink-0 gap-2 overflow-hidden rounded-sm"
+      style={{
+        backgroundColor: hover ? anime.color + "26" : undefined,
+        transition: "background-color 0.1s",
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       {/* Image */}
       <Image src={anime.coverImage!} alt={title} width="72" height="96" className="object-cover" />
       {/* Content */}
@@ -54,6 +67,6 @@ export default function AnimeRankCard({ ...anime }: AnimeBasic) {
           })}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

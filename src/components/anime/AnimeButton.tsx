@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
-const buttonIcons = {
+type AnimeButtonIcon = "anilist" | "mal";
+type AnimeButtonSize = "large" | "medium";
+
+const buttonIcons: Record<AnimeButtonIcon, React.ReactNode> = {
   anilist: (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 lg:h-5 lg:w-5" viewBox="0 0 24 24">
       <path
@@ -19,29 +23,36 @@ const buttonIcons = {
   ),
 };
 
-const buttonSizes = {
-  large: "px-6 h-10",
-  medium: "px-5 h-8",
+const animeLink: Record<AnimeButtonIcon, (id: string) => string> = {
+  anilist: (id) => `https://anilist.co/anime/${id}`,
+  mal: (id) => `https://myanimelist.net/anime/${id}`,
 };
 
-export default function AnimeButton({
-  icon,
-  size,
-}: {
-  icon: "anilist" | "mal";
-  size: "large" | "medium";
-}) {
-  const Icon = buttonIcons[icon];
+const buttonSizes: Record<AnimeButtonSize, string> = {
+  large: "h-10 px-6",
+  medium: "h-8 px-5",
+};
 
+type AnimeButtonProps = {
+  icon: AnimeButtonIcon;
+  size: AnimeButtonSize;
+  animeId: number;
+  className?: string;
+};
+
+export default function AnimeButton({ icon, size, animeId, className }: AnimeButtonProps) {
   return (
-    <a
+    <Link
+      href={animeLink[icon](String(animeId))}
+      target="_blank"
       className={cn(
         "bg-secondary/50 flex w-full items-center justify-center rounded-sm",
         buttonSizes[size],
+        className,
       )}
-      href="/"
+      onClick={(e) => e.stopPropagation()}
     >
-      {Icon}
-    </a>
+      {buttonIcons[icon]}
+    </Link>
   );
 }

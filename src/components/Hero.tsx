@@ -57,7 +57,7 @@ export default async function Hero() {
             return (
               <CarouselItem
                 key={anime.id}
-                className="relative flex h-[350px] w-full items-end rounded-sm bg-cover bg-center lg:h-[480px]"
+                className="relative flex h-[350px] w-full items-end rounded-sm bg-cover bg-center select-none lg:h-[480px]"
                 style={{
                   backgroundImage: `url(${anime.bannerImage})`,
                 }}

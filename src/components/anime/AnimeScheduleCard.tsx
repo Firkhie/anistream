@@ -1,8 +1,14 @@
+"use client";
+
 import { AnimeBasic } from "@/types";
 import Image from "next/image";
 import { formatUnixTime } from "@/lib/utils";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function AnimeScheduleCard({ ...anime }: AnimeBasic) {
+  const [hover, setHover] = useState(false);
+
   const title =
     anime.title?.userPreferred ||
     anime.title?.romaji ||
@@ -11,7 +17,16 @@ export default function AnimeScheduleCard({ ...anime }: AnimeBasic) {
     "Untitled";
 
   return (
-    <div className="flex gap-2 overflow-hidden rounded-sm border">
+    <Link
+      href={`/detail/${anime.id}`}
+      className="flex gap-2 overflow-hidden rounded-sm border transition-all duration-100"
+      style={{
+        backgroundColor: hover ? anime.color + "26" : undefined,
+        transition: "background-color 0.1s",
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       {/* Left Side */}
       <Image src={anime.coverImage!} alt={title} width="56" height="96" className="object-cover" />
       {/* Right Side */}
@@ -24,6 +39,6 @@ export default function AnimeScheduleCard({ ...anime }: AnimeBasic) {
           <span className="font-bold"> {formatUnixTime(anime.nextAiringEpisode?.airingAt!)}</span>
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

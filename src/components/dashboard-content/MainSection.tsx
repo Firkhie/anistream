@@ -39,7 +39,7 @@ export default function MainSection() {
             <button
               key={item}
               className={cn(
-                "hover:text-primary px-4 py-1 text-sm uppercase transition",
+                "hover:text-primary cursor-pointer px-4 py-1 text-sm uppercase transition",
                 preset === item ? "text-primary" : "",
               )}
               onClick={() => handlePreset(item)}

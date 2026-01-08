@@ -3,7 +3,7 @@
 import { MEDIA_SEASONS } from "@/constants/media";
 import { currentYear } from "@/constants/years";
 import { cn } from "@/lib/utils";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 
 export default function TrendingFilter({
   season,
@@ -24,14 +24,14 @@ export default function TrendingFilter({
           <Fragment key={item.label}>
             <div
               className={cn(
-                "rounded-sm px-7 py-1 text-xl font-semibold lg:py-2 lg:text-2xl",
-                season === item.label ? "bg-primary" : "",
+                "cursor-pointer rounded-sm px-8 py-1 text-xl font-semibold",
+                season === item.value.toLowerCase() ? "bg-primary" : "",
               )}
-              onClick={() => handleSeason(item.label)}
+              onClick={() => handleSeason(item.value.toLowerCase())}
             >
               {item.label}
             </div>
-            {index !== MEDIA_SEASONS.length - 1 && <div className="text-xl lg:text-2xl">/</div>}
+            {index !== MEDIA_SEASONS.length - 1 && <div className="text-2xl">/</div>}
           </Fragment>
         ))}
       </div>

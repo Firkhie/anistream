@@ -8,7 +8,7 @@ export default function TrendingPage() {
   const [season, setSeason] = useState<"winter" | "spring" | "summer" | "fall">("winter");
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       <TrendingFilter season={season} onChangeSeason={setSeason} />
       <TrendingLoader season={season} />
     </div>
