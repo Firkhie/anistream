@@ -26,7 +26,7 @@ export default function AnimeCard({ ...anime }: AnimeBasic) {
   return (
     <div className="flex flex-col gap-2">
       {/* Image */}
-      <Link href={`detail/${anime.id}`} className="group relative aspect-2/3">
+      <Link href={`/detail/${anime.id}`} className="group relative aspect-2/3">
         <Image
           src={anime.coverImage!}
           alt={title}
@@ -58,7 +58,7 @@ export default function AnimeCard({ ...anime }: AnimeBasic) {
           className="h-2.5 w-2.5 shrink-0 rounded-full"
         ></div>
         <Link
-          href={`detail/${anime.id}`}
+          href={`/detail/${anime.id}`}
           className="hover:text-primary line-clamp-1 text-sm font-semibold"
         >
           {title}

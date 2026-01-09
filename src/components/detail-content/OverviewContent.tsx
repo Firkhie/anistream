@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function OverviewContent({ data }: { data: AnimeDetail }) {
   return (
-    <div>
+    <div className="flex w-full flex-col gap-4">
       {/* Trailer Section */}
       <div className="h-96 w-full overflow-hidden rounded-sm">
         <iframe
@@ -15,41 +15,38 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
         ></iframe>
       </div>
 
-      {/* TODO: NEED TO BE CHANGED */}
       {/* Characters Section */}
-      {data?.characters && data.characters.length > 0 && (
+      {data.characters && data.characters.length > 0 && (
         <div className="flex flex-col gap-y-3">
           <div className="flex items-center gap-x-2">
-            <Users className="h-4 w-4 sm:h-5 sm:w-5" />
-            <p className="text-sm sm:text-base">Characters</p>
+            <Users className="h-5 w-5" />
+            <h4>Characters</h4>
           </div>
-          <div className="grid gap-3 min-[1100px]:grid-cols-2 min-[1400px]:grid-cols-3">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(398px,1fr))] gap-2">
             {data.characters.map((char) => {
-              const actor = char.voiceActors!.find(
-                (actor) => actor.language.toUpperCase() === "JAPANESE",
-              );
+              const actor = char.voiceActors?.[0] ?? null;
+              const charName = char.name!.userPreferred || char.name!.full || "-";
 
               return (
                 <div
                   key={char.id}
-                  className="bg-secondary/50 flex h-24 justify-between rounded-sm text-xs sm:text-[13px]"
+                  className="bg-secondary/75 flex h-24 justify-between rounded-sm text-xs sm:text-[13px]"
                 >
                   {/* Character Info */}
                   <div className="relative flex gap-x-1">
                     <div className="relative aspect-2/3 h-24">
                       <Image
-                        src={char?.image ?? "/assets/not-found.png"}
-                        alt="OK"
+                        src={char.image ?? "/assets/not-found.png"}
+                        alt={char.id}
                         sizes="(max-width: 768px) 100vw, 50vw"
                         fill
-                        className="rounded-sm"
+                        className="rounded-l-sm"
+                        unoptimized
                       />
                     </div>
                     <div className="flex flex-col justify-between p-2">
-                      <p>{char.name!.userPreferred || char.name!.full || "-"}</p>
-                      <p className="font-extralight text-[hsl(var(--muted-foreground))]">
-                        {char.role ?? "-"}
-                      </p>
+                      <p>{charName}</p>
+                      <p className="text-muted-foreground font-extralight">{char.role ?? "-"}</p>
                     </div>
                   </div>
 
@@ -58,19 +55,20 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
                     <div key={actor.id} className="relative flex gap-x-1">
                       <div className="flex flex-col items-end justify-between p-2">
                         <p className="text-end">
-                          {actor.name!.userPreferred || actor.name!.full || "-"}
+                          {actor.name?.userPreferred || actor.name?.full || "-"}
                         </p>
-                        <p className="font-extralight text-[hsl(var(--muted-foreground))]">
+                        <p className="text-muted-foreground font-extralight">
                           {actor.language ?? "-"}
                         </p>
                       </div>
-                      <div className="relative h-24 w-[72px] shrink-0 overflow-hidden rounded-r-sm">
+                      <div className="relative aspect-2/3 h-24">
                         <Image
-                          alt="Image"
-                          src={actor.image!}
+                          alt={actor.id}
+                          src={actor.image ?? "/assets/not-found.png"}
                           fill
-                          className="object-cover object-center"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="rounded-r-sm"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          unoptimized
                         />
                       </div>
                     </div>

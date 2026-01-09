@@ -43,7 +43,7 @@ type AnimeButtonProps = {
 export default function AnimeButton({ icon, size, animeId, className }: AnimeButtonProps) {
   return (
     <Link
-      href={animeLink[icon](String(animeId))}
+      href={animeLink[icon](String(animeId || ""))}
       target="_blank"
       className={cn(
         "bg-secondary/50 flex w-full items-center justify-center rounded-sm",

@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import { AnimeDetail, SearchResponse } from "@/types";
+import { AnimeDetail } from "@/types";
 import { useEffect, useState } from "react";
 import getAnimeDetailById from "@/lib/getAnimeDetailById";
 
