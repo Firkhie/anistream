@@ -1,6 +1,8 @@
 import { AnimeDetail } from "@/types";
-import { Users } from "lucide-react";
+import { Blend, Users } from "lucide-react";
 import Image from "next/image";
+import AnimeRankCard from "../anime/AnimeRankCard";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carousel";
 
 export default function OverviewContent({ data }: { data: AnimeDetail }) {
   return (
@@ -17,7 +19,7 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
 
       {/* Characters Section */}
       {data.characters && data.characters.length > 0 && (
-        <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col gap-3">
           <div className="flex items-center gap-x-2">
             <Users className="h-5 w-5" />
             <h4>Characters</h4>
@@ -38,9 +40,9 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
                       <Image
                         src={char.image ?? "/assets/not-found.png"}
                         alt={char.id}
-                        sizes="(max-width: 768px) 100vw, 50vw"
                         fill
-                        className="rounded-l-sm"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="rounded-l-sm object-cover object-center"
                         unoptimized
                       />
                     </div>
@@ -63,11 +65,11 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
                       </div>
                       <div className="relative aspect-2/3 h-24">
                         <Image
-                          alt={actor.id}
                           src={actor.image ?? "/assets/not-found.png"}
+                          alt={actor.id}
                           fill
-                          className="rounded-r-sm"
                           sizes="(max-width: 768px) 100vw, 50vw"
+                          className="rounded-r-sm object-cover object-center"
                           unoptimized
                         />
                       </div>
@@ -77,6 +79,25 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
               );
             })}
           </div>
+        </div>
+      )}
+
+      {/* Relations Section */}
+      {data.relations && data.relations.length > 0 && (
+        <div className="flex flex-col gap-y-3">
+          <div className="flex items-center gap-x-2">
+            <Blend className="h-5 w-5" />
+            <h4>Relations</h4>
+          </div>
+          <Carousel className="w-full">
+            <CarouselContent className="-ml-1">
+              {data.relations.map((anime) => (
+                <CarouselItem key={anime.id} className="basis-1/3 pl-2">
+                  <AnimeRankCard key={anime.id} {...anime} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       )}
     </div>
