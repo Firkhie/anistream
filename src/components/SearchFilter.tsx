@@ -90,7 +90,8 @@ export default function SearchFilter() {
               closeMenuOnSelect={!isMulti}
               // value={() => handleValue(filterKey)}
               onChange={(selected) => handleFilter({ key: filterKey, selected })}
-              className="text-sm text-background"
+              className="my-react-select-container"
+              classNamePrefix="my-react-select"
             />
           </div>
         );
