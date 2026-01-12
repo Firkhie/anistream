@@ -12,9 +12,9 @@ export default async function DetailContent({ slug }: { slug: string }) {
 
   if (!data) return <div>404</div>;
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       <DetailHero banner={data.bannerImage ?? "/assets/test.png"} />
-      <div className="flex flex-row gap-5 p-5">
+      <div className="flex flex-row gap-5 px-5">
         <InfoPanel data={data} />
         <DetailMain data={data} />
       </div>

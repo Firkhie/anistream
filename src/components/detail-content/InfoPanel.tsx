@@ -11,14 +11,15 @@ import { AnimeDetail } from "@/types";
 
 export default function InfoPanel({ data }: { data: AnimeDetail }) {
   return (
-    <div className="relative -top-24 flex w-52 flex-col gap-2">
+    <div className="relative -top-24 flex h-fit w-52 shrink-0 flex-col gap-2">
       {/* Cover */}
       <div className="relative aspect-2/3">
         <Image
           src={data.coverImage ?? "/assets/not-found.png"}
-          alt="cover"
+          alt={String(data.id)}
           fill
-          className="rounded-sm object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="rounded-sm object-cover object-center"
         />
       </div>
 

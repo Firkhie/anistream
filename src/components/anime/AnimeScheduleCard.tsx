@@ -28,7 +28,15 @@ export default function AnimeScheduleCard({ ...anime }: AnimeBasic) {
       onMouseLeave={() => setHover(false)}
     >
       {/* Left Side */}
-      <Image src={anime.coverImage!} alt={title} width="56" height="96" className="object-cover" />
+      <div className="relative aspect-2/3 h-20">
+        <Image
+          src={anime.coverImage ?? "/assets/not-found.png"}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover object-center"
+        />
+      </div>
       {/* Right Side */}
       <div className="flex flex-col gap-2 px-1 py-2">
         <h5 className="line-clamp-1 text-sm font-semibold">{title}</h5>

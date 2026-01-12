@@ -1,20 +1,21 @@
-import { AnimeBasic } from "@/types";
-import { ClosedCaption, LucideIcon, Monitor, Star } from "lucide-react";
+import { AnimeBasic, MediaRelation } from "@/types";
+import { Blend, ClosedCaption, LucideIcon, Monitor, Star } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "../ui/Badge";
 import Link from "next/link";
 import { useState } from "react";
 
 const containerBadges: {
-  key: "format" | "currentEpisode" | "rating" | "year";
+  key: "format" | "currentEpisode" | "rating" | "year" | "relationType";
   icon: LucideIcon;
 }[] = [
   { key: "format", icon: Monitor },
   { key: "currentEpisode", icon: ClosedCaption },
   { key: "rating", icon: Star },
+  { key: "relationType", icon: Blend },
 ];
 
-export default function AnimeRankCard({ ...anime }: AnimeBasic) {
+export default function AnimeRankCard({ ...anime }: AnimeBasic & { relationType?: MediaRelation }) {
   const [hover, setHover] = useState(false);
 
   const title =
@@ -45,7 +46,16 @@ export default function AnimeRankCard({ ...anime }: AnimeBasic) {
       onMouseLeave={() => setHover(false)}
     >
       {/* Image */}
-      <Image src={anime.coverImage!} alt={title} width="72" height="96" className="object-cover" />
+      <div className="relative aspect-2/3 h-24">
+        <Image
+          src={anime.coverImage ?? "/assets/not-found.png"}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="rounded-l-sm object-cover object-center"
+          unoptimized
+        />
+      </div>
       {/* Content */}
       <div className="flex flex-col justify-between gap-1 py-2 pr-2">
         <div>
@@ -60,7 +70,7 @@ export default function AnimeRankCard({ ...anime }: AnimeBasic) {
             if (!value) return;
 
             return (
-              <Badge key={key} icon={Icon} className="rounded-sm">
+              <Badge key={key} icon={Icon} className="shrink-0 rounded-sm">
                 {value}
               </Badge>
             );

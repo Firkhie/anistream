@@ -10,10 +10,15 @@ export function cn(...inputs: ClassValue[]) {
 export function sanitizeHtmlString(input: string) {
   if (!input) return "";
 
-  let sanitized = input.replace(/<br\s*\/?>/gi, "");
-  sanitized = sanitized.replace(/<<([^<>]+)>>/g, "&lt;&lt;$1&gt;&gt;");
-
-  return sanitized;
+  return (
+    input
+      // remove <br> / <br />
+      .replace(/<br\s*\/?>/gi, "")
+      // remove <p> and </p>
+      .replace(/<\/?p\s*>/gi, "")
+      // escape <<text>>
+      .replace(/<<([^<>]+)>>/g, "&lt;&lt;$1&gt;&gt;")
+  );
 }
 
 export function formatUnixTime(input: number) {

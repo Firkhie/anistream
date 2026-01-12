@@ -9,7 +9,6 @@ import getAnimeByPreset from "@/lib/getAnimeByPreset";
 import { SearchResponse } from "@/types";
 import parse from "html-react-parser";
 import { Button } from "./ui/Button";
-import { sanitizeHtmlString } from "@/lib/utils";
 import {
   Calendar1,
   ClosedCaption,
@@ -79,9 +78,7 @@ export default async function Hero() {
                       })}
                     </div>
                     <h1 className="line-clamp-2 text-3xl font-semibold lg:text-4xl">{title}</h1>
-                    <span className="line-clamp-2 text-sm lg:line-clamp-3">
-                      {parse(sanitizeHtmlString(description))}
-                    </span>
+                    <div className="line-clamp-2 text-sm lg:line-clamp-3">{parse(description)}</div>
                   </div>
                   {/* Buttons */}
                   <div className="flex flex-1 items-end gap-2 lg:justify-end">

@@ -28,10 +28,11 @@ export default function AnimeCard({ ...anime }: AnimeBasic) {
       {/* Image */}
       <Link href={`/detail/${anime.id}`} className="group relative aspect-2/3">
         <Image
-          src={anime.coverImage!}
+          src={anime.coverImage ?? "/assets/not-found.png"}
           alt={title}
           fill
-          className="rounded-sm transition-all duration-100 group-hover:blur-xs"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="rounded-sm object-cover object-center transition-all duration-100 group-hover:blur-xs"
         />
         {/* Badges */}
         <div className="absolute bottom-2 left-2 flex gap-0.5">

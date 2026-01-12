@@ -2,7 +2,6 @@ import { AnimeBasic } from "@/types";
 import Image from "next/image";
 import { Badge } from "../ui/Badge";
 import parse from "html-react-parser";
-import { sanitizeHtmlString } from "@/lib/utils";
 import AnimeButton from "./AnimeButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -57,7 +56,13 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
       {/* Left */}
       <div className="flex flex-col gap-2">
         <div className="relative aspect-2/3 h-48">
-          <Image src={anime.coverImage!} alt={title} fill className="rounded-sm" />
+          <Image
+            src={anime.coverImage ?? "/assets/not-found.png"}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="rounded-sm object-cover object-center"
+          />
         </div>
 
         <div className="flex gap-2">
@@ -83,9 +88,7 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
           <span className="line-clamp-2 text-sm font-light" style={{ color: textColor }}>
             {subTitle}
           </span>
-          <p className="text-muted-foreground line-clamp-4 text-sm">
-            {parse(sanitizeHtmlString(description))}
-          </p>
+          <div className="text-muted-foreground line-clamp-4 text-sm">{parse(description)}</div>
         </div>
 
         <div className="scrollbar-hidden flex gap-1.5 overflow-x-scroll">

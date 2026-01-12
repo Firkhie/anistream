@@ -5,7 +5,7 @@ import { DetailPreset } from ".";
 import { LucideIcon, Monitor, Star } from "lucide-react";
 import { Badge } from "../ui/Badge";
 import parse from "html-react-parser";
-import { cn, sanitizeHtmlString } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import OverviewContent from "./OverviewContent";
 import WatchContent from "./WatchContent";
 import CharactersContent from "./CharactersContent";
@@ -36,7 +36,7 @@ export function DetailMain({ data }: { data: AnimeDetail }) {
     setPreset(preset);
   };
   return (
-    <div className="flex flex-1 flex-col gap-3">
+    <div className="flex h-fit flex-1 flex-col gap-3 overflow-hidden">
       <h2 className="text-lg font-bold">{title}</h2>
       <div className="flex gap-1">
         {data &&
@@ -51,7 +51,7 @@ export function DetailMain({ data }: { data: AnimeDetail }) {
             );
           })}
       </div>
-      <p className="h-28 text-sm">{parse(sanitizeHtmlString(description))}</p>
+      <div className="h-[140px] overflow-y-auto text-sm">{parse(description)}</div>
 
       <div className="flex w-fit items-center divide-x rounded-sm border">
         {(["overview", "watch", "characters"] as DetailPreset[]).map((item) => (
