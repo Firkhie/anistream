@@ -6,9 +6,9 @@ import { LucideIcon, Monitor, Star } from "lucide-react";
 import { Badge } from "../ui/Badge";
 import parse from "html-react-parser";
 import { cn } from "@/lib/utils";
-import OverviewContent from "./OverviewContent";
-import WatchContent from "./WatchContent";
-import CharactersContent from "./CharactersContent";
+import OverviewSection from "./OverviewSection";
+import WatchSection from "./WatchSection";
+import CharactersSection from "./CharactersSection";
 import { useState } from "react";
 
 const containerBadges: {
@@ -69,9 +69,9 @@ export function DetailMain({ data }: { data: AnimeDetail }) {
       </div>
 
       <div className="bg-secondary/50 flex flex-col gap-2 rounded-sm p-3">
-        {preset === "overview" && <OverviewContent data={data} />}
-        {preset === "watch" && <WatchContent />}
-        {preset === "characters" && <CharactersContent />}
+        {preset === "overview" && <OverviewSection data={data} />}
+        {preset === "watch" && <WatchSection />}
+        {preset === "characters" && <CharactersSection />}
       </div>
     </div>
   );

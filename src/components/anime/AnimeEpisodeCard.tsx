@@ -2,9 +2,12 @@ import { AnimeEpisode } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-function AnimeEpisodeCardV1({ eps }: { eps: AnimeEpisode }) {
+function AnimeEpisodeCardV1({ animeId, eps }: { animeId: string; eps: AnimeEpisode }) {
   return (
-    <Link href="/" className="bg-secondary/75 flex h-[100px] rounded-sm hover:opacity-50">
+    <Link
+      href={`/watch/${animeId}?ep=${eps.episode}`}
+      className="bg-secondary/75 flex h-[100px] rounded-sm hover:opacity-50"
+    >
       <div className="relative w-[148px] shrink-0">
         <Image
           src={eps.image ?? "/assets/not-found.png"}
@@ -29,17 +32,23 @@ function AnimeEpisodeCardV1({ eps }: { eps: AnimeEpisode }) {
   );
 }
 
-function AnimeEpisodeCardV2({ eps }: { eps: AnimeEpisode }) {
+function AnimeEpisodeCardV2({ animeId, eps }: { animeId: string; eps: AnimeEpisode }) {
   return (
-    <Link href="/" className="bg-secondary/75 rounded-sm p-2 text-center hover:opacity-50">
+    <Link
+      href={`/watch/${animeId}?ep=${eps.episode}`}
+      className="bg-secondary/75 rounded-sm p-2 text-center hover:opacity-50"
+    >
       {eps.episode}
     </Link>
   );
 }
 
-function AnimeEpisodeCardV3({ eps }: { eps: AnimeEpisode }) {
+function AnimeEpisodeCardV3({ animeId, eps }: { animeId: string; eps: AnimeEpisode }) {
   return (
-    <Link href="/" className="bg-secondary/75 rounded-md p-2 hover:opacity-50">
+    <Link
+      href={`/watch/${animeId}?ep=${eps.episode}`}
+      className="bg-secondary/75 rounded-md p-2 hover:opacity-50"
+    >
       <p className="line-clamp-1 text-sm">
         {eps.episode ?? "N/A"}. {eps.title ?? "Untitled"}
       </p>

@@ -17,7 +17,7 @@ const languageOptions: LanguageOption[] = [
   { value: "indonesia", label: "Indonesia" },
 ];
 
-export default function CharactersContent() {
+export default function CharactersSection() {
   const { slug } = useParams();
   const { data, loading } = useAnimeCharactersById({ id: slug as string });
 

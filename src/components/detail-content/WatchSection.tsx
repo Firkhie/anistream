@@ -21,7 +21,7 @@ const layoutClass: Record<WatchView, string> = {
   grid: "grid-cols-10",
 };
 
-export default function WatchContent() {
+export default function WatchSection({ className }: { className?: string }) {
   const { slug } = useParams();
   const { data, loading } = useAnimeEpisodesById({ id: slug as string });
 
@@ -72,14 +72,20 @@ export default function WatchContent() {
           <span className="text-sm">Loading</span>
         </div>
       ) : episodes.length ? (
-        <div className={cn("grid max-h-[752px] gap-2 overflow-y-auto text-sm", layoutClass[view])}>
+        <div
+          className={cn(
+            "grid max-h-[752px] gap-2 overflow-y-auto text-sm",
+            layoutClass[view],
+            className,
+          )}
+        >
           {episodes.map((eps) =>
             view === "detail" ? (
-              <AnimeEpisodeCardV1 key={eps.episode} eps={eps} />
+              <AnimeEpisodeCardV1 key={eps.episode} animeId={slug as string} eps={eps} />
             ) : view === "grid" ? (
-              <AnimeEpisodeCardV2 key={eps.episode} eps={eps} />
+              <AnimeEpisodeCardV2 key={eps.episode} animeId={slug as string} eps={eps} />
             ) : (
-              <AnimeEpisodeCardV3 key={eps.episode} eps={eps} />
+              <AnimeEpisodeCardV3 key={eps.episode} animeId={slug as string} eps={eps} />
             ),
           )}
         </div>

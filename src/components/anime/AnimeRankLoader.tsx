@@ -1,23 +1,31 @@
-import { AnimeBasic, SearchResponse } from "@/types";
+import { AnimeBasic, AnimeDetail, SearchResponse } from "@/types";
 import getAnimeByPreset, { Preset } from "@/lib/getAnimeByPreset";
 import AnimeRankList from "./AnimeRankList";
+import getAnimeDetailById from "@/lib/getAnimeDetailById";
 
 export default async function AnimeRankLoader({
   preset,
-  animes,
+  animeId,
   sectionType,
 }: {
   preset?: Preset;
-  animes?: AnimeBasic[];
+  animeId?: string;
   sectionType: "airing" | "upcoming" | "relations" | "recommendations";
 }) {
-  const data: SearchResponse = animes
-    ? animes
-    : preset
-    ? await getAnimeByPreset({ preset, perPage: 10 })
-    : { results: [] };
+  let results: AnimeBasic[] = [];
 
-  if (data.results.length < 1) return <div>Anime not found.</div>;
+  if ((sectionType === "airing" || sectionType === "upcoming") && preset) {
+    const data: SearchResponse = await getAnimeByPreset({ preset, perPage: 10 });
+    results = data.results ?? [];
+  } else if (sectionType === "relations" && animeId) {
+    const data: AnimeDetail = await getAnimeDetailById({ id: animeId });
+    results = data.relations ?? [];
+  } else if (sectionType === "recommendations" && animeId) {
+    const data: AnimeDetail = await getAnimeDetailById({ id: animeId });
+    results = data.recommendations ?? [];
+  }
 
-  return <AnimeRankList sectionType={sectionType} results={data.results} />;
+  if (results.length < 1) return <div>Anime not found.</div>;
+
+  return <AnimeRankList sectionType={sectionType} results={results} />;
 }
