@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import DashboardContent from "@/components/dashboard-content";
 import Genres from "@/components/Genres";
 import Hero from "@/components/Hero";

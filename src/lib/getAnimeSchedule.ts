@@ -11,14 +11,9 @@ export default async function getAnimeSchedule() {
   const params = new URLSearchParams(filters).toString();
   const host = process.env.NODE_ENV === "production" ? "" : process.env.NEXT_PUBLIC_APP_HOST;
 
-  const cacheKey = `anime-schedule-${filters}`;
-
-  if (typeof window !== "undefined") {
-    const cachedData = sessionStorage.getItem(cacheKey);
-    if (cachedData) return JSON.parse(cachedData);
-  }
-
-  const res = await fetch(`${host}/api/anime/airing?${params}`).then((res) => res.json());
+  const res = await fetch(`${host}/api/anime/airing?${params}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 hari
+  }).then((res) => res.json());
 
   const grouped: Record<string, typeof res.results> = {};
   res.results.forEach((item: any) => {
@@ -46,10 +41,6 @@ export default async function getAnimeSchedule() {
     const dateB = parse(b.date, "EEEE, d MMM yyyy", new Date());
     return dateA.getTime() - dateB.getTime();
   });
-
-  if (typeof window !== "undefined") {
-    sessionStorage.setItem(cacheKey, JSON.stringify({ ...res, results: groupedResults }));
-  }
 
   return {
     ...res,

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import AnimeScheduleSkeleton from "@/components/anime/AnimeScheduleSkeleton";
 import ScheduleHeader from "@/components/ScheduleHeader";
 import ScheduleLoader from "@/components/ScheduleLoader";
