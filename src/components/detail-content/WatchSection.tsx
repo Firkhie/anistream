@@ -12,6 +12,7 @@ import {
   AnimeEpisodeCardV3,
 } from "../anime/AnimeEpisodeCard";
 import { cn } from "@/lib/utils";
+import useAnimeBaseById from "@/hooks/useAnimeBaseById";
 
 export type WatchView = "detail" | "grid" | "list";
 
@@ -23,23 +24,26 @@ const layoutClass: Record<WatchView, string> = {
 
 export default function WatchSection({ className }: { className?: string }) {
   const { slug } = useParams();
-  const { data, loading } = useAnimeEpisodesById({ id: slug as string });
+  const { data: dataEpisodes, loading: loadingEpisodes } = useAnimeEpisodesById({
+    id: slug as string,
+  });
+  const { data: dataBase, loading: loadingBase } = useAnimeBaseById({ id: slug as string });
 
   const [query, setQuery] = useState("");
   const [episodes, setEpisodes] = useState<AnimeEpisode[]>([]);
   const [view, setView] = useState<WatchView>("detail");
 
   useEffect(() => {
-    if (!data) return;
+    if (!dataEpisodes) return;
 
-    const filtered = data.filter((eps) => {
+    const filtered = dataEpisodes.filter((eps) => {
       const titleMatch = eps.title?.toLowerCase().includes(query.toLowerCase());
       const numberMatch = String(eps.episode).includes(query);
       return titleMatch || numberMatch;
     });
 
     setEpisodes(filtered);
-  }, [query, data]);
+  }, [query, dataEpisodes]);
 
   const views: WatchView[] = ["detail", "grid", "list"];
   const handleToggleView = () => {
@@ -67,7 +71,7 @@ export default function WatchSection({ className }: { className?: string }) {
       </div>
 
       {/* Episodes */}
-      {loading ? (
+      {loadingEpisodes ? (
         <div>
           <span className="text-sm">Loading</span>
         </div>
@@ -81,11 +85,11 @@ export default function WatchSection({ className }: { className?: string }) {
         >
           {episodes.map((eps) =>
             view === "detail" ? (
-              <AnimeEpisodeCardV1 key={eps.episode} animeId={slug as string} eps={eps} />
+              <AnimeEpisodeCardV1 key={eps.episode} animeBase={dataBase!} eps={eps} />
             ) : view === "grid" ? (
-              <AnimeEpisodeCardV2 key={eps.episode} animeId={slug as string} eps={eps} />
+              <AnimeEpisodeCardV2 key={eps.episode} animeBase={dataBase!} eps={eps} />
             ) : (
-              <AnimeEpisodeCardV3 key={eps.episode} animeId={slug as string} eps={eps} />
+              <AnimeEpisodeCardV3 key={eps.episode} animeBase={dataBase!} eps={eps} />
             ),
           )}
         </div>

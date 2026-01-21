@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
-import { FuzzyDate } from "@/types";
+import { AnimeBase, AnimeEpisode, FuzzyDate, HistoryEpisode } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -37,4 +37,28 @@ export function formatPlainDate(input: FuzzyDate) {
   const date = new Date(input.year, input.month - 1, input.day);
 
   return format(date, "eeee, d MMM yyyy");
+}
+
+export function saveWatchHistory({ animeBase, eps }: { animeBase: AnimeBase; eps: AnimeEpisode }) {
+  if (typeof window === "undefined") return;
+
+  const existHistory: HistoryEpisode[] = JSON.parse(localStorage.getItem("history_watch") || "[]");
+
+  const filtered = existHistory.filter((item) => item.id !== eps.id);
+
+  const title =
+    animeBase.title?.userPreferred ||
+    animeBase.title?.romaji ||
+    animeBase.title?.english ||
+    animeBase.title?.native ||
+    "Untitled";
+
+  const newEps = {
+    ...eps,
+    animeId: animeBase.id,
+    animeTitle: title,
+  };
+  const updated = [newEps, ...filtered].slice(0, 25);
+
+  localStorage.setItem("history_watch", JSON.stringify(updated));
 }

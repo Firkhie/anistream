@@ -34,13 +34,24 @@ export type AnimeBasic = {
   nextAiringEpisode: AiringSchedule | null;
 };
 
+export type AnimeBase = {
+  id: number;
+  title: MediaTitle | null;
+};
+
 export type AnimeEpisode = {
+  id: string | null;
   title: string | null;
   episode: number | null;
   description: string | null;
   image: string | null;
   rating: string | null;
   airDate: string | null;
+};
+
+export type HistoryEpisode = AnimeEpisode & {
+  animeId: number;
+  animeTitle: string;
 };
 
 export type MediaVariables = {
