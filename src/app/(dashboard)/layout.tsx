@@ -7,6 +7,7 @@ import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/Sonner";
+import ScrollTopButton from "@/components/ScrollTopButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,6 +39,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </div>
+          <ScrollTopButton />
         </ThemeProvider>
       </body>
     </html>
