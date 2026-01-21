@@ -29,7 +29,7 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
   const textColor = anime.color || "white";
 
   const handleCardClick = () => {
-    router.push(`detail/${anime.id}`);
+    router.push(`/detail/${anime.id}`);
   };
 
   const handleGenreClick = (genre: string) => {
@@ -39,7 +39,7 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
       genres: genre,
     });
 
-    router.push(`search?${params.toString()}`);
+    router.push(`/search?${params.toString()}`);
   };
 
   return (

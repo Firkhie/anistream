@@ -1,27 +1,27 @@
 "use client";
 
 import { Button } from "../ui/Button";
-import { Search } from "lucide-react";
+import { ArrowRight, ChevronRight, Search, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 export default function SearchBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const query = formData.get("query")?.toString() ?? "";
-
     const params = new URLSearchParams(searchParams.toString());
     if (query.length > 0) params.set("query", query);
     else params.delete("query");
 
-    router.push(`search?${params.toString()}`);
+    router.push(`/search?${params.toString()}`);
     setIsOpen(false);
   };
 
@@ -34,11 +34,20 @@ export default function SearchBar() {
           <input
             name="query"
             className="flex-1 bg-transparent text-sm outline-none focus:ring-0"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Search anime..."
             autoComplete="off"
           />
+          <X
+            className={cn(
+              "text-foreground/50 h-4 w-4 shrink-0 cursor-pointer",
+              query.length > 0 ? "" : "hidden",
+            )}
+            onClick={() => setQuery("")}
+          />
         </div>
-        <Button size="icon">
+        <Button type="submit" size="icon">
           <Search />
         </Button>
       </form>
@@ -61,9 +70,23 @@ export default function SearchBar() {
           <input
             name="query"
             className="flex-1 bg-transparent text-sm outline-none focus:ring-0"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Search anime..."
             autoComplete="off"
           />
+          <div className="flex items-center justify-center gap-1">
+            <X
+              className={cn(
+                "text-foreground/50 h-4 w-4 shrink-0 cursor-pointer",
+                query.length > 0 ? "" : "hidden",
+              )}
+              onClick={() => setQuery("")}
+            />
+            <Button type="submit" variant="none">
+              <ArrowRight className="text-foreground h-4 w-4 shrink-0" />
+            </Button>
+          </div>
         </div>
       </form>
     </>

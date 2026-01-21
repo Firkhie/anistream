@@ -21,7 +21,7 @@ export default function Genres() {
     };
 
     const params = new URLSearchParams(filters).toString();
-    router.push(`search?${params.toString()}`);
+    router.push(`/search?${params.toString()}`);
   };
   return (
     <Carousel className="px-11">

@@ -11,7 +11,7 @@ export default function RandomGenerator() {
 
   const handleRandomAnime = async () => {
     const id = await getAnilistId();
-    if (id) router.push(`detail/${id}`);
+    if (id) router.push(`/detail/${id}`);
     else toast.error("Fetch anime failed.");
   };
 
