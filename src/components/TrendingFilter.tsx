@@ -24,14 +24,14 @@ export default function TrendingFilter({
           <Fragment key={item.label}>
             <div
               className={cn(
-                "cursor-pointer rounded-sm px-8 py-1 text-xl font-semibold",
+                "cursor-pointer rounded-sm px-8 py-1 text-lg font-semibold md:text-xl",
                 season === item.value.toLowerCase() ? "bg-primary" : "",
               )}
               onClick={() => handleSeason(item.value.toLowerCase())}
             >
               {item.label}
             </div>
-            {index !== MEDIA_SEASONS.length - 1 && <div className="text-2xl">/</div>}
+            {index !== MEDIA_SEASONS.length - 1 && <div className="text-xl md:text-2xl">/</div>}
           </Fragment>
         ))}
       </div>

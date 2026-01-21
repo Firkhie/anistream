@@ -84,11 +84,16 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
       {/* Right */}
       <div className="flex flex-col justify-between overflow-hidden">
         <div className="flex flex-col gap-2">
-          <h3 className="line-clamp-2 text-xl font-semibold">{title}</h3>
-          <span className="line-clamp-2 text-sm font-light" style={{ color: textColor }}>
+          <h3 className="line-clamp-2 text-lg font-semibold md:text-xl">{title}</h3>
+          <span
+            className="line-clamp-1 text-sm font-light md:line-clamp-2"
+            style={{ color: textColor }}
+          >
             {subTitle}
           </span>
-          <div className="text-muted-foreground line-clamp-4 text-sm">{parse(description)}</div>
+          <div className="text-muted-foreground line-clamp-3 text-sm md:line-clamp-4">
+            {parse(description)}
+          </div>
         </div>
 
         <div className="scrollbar-hidden flex gap-1.5 overflow-x-scroll">

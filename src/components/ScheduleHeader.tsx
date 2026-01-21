@@ -25,13 +25,15 @@ export default function ScheduleHeader() {
   }, [time, mounted]);
 
   return (
-    <div className="from-background via-primary/75 to-background flex flex-col items-center gap-2 bg-linear-to-r px-5 py-8">
-      <h2 className="text-3xl font-bold text-white">Anime Airing Schedule</h2>
-      <h3 className="font-light text-white">Stay updated with the latest anime airing times!</h3>
+    <div className="from-background via-primary/75 to-background flex flex-col items-center gap-2 bg-linear-to-r px-5 py-8 text-center">
+      <h2 className="text-xl font-bold text-white md:text-3xl">Anime Airing Schedule</h2>
+      <h3 className="text-sm font-light text-white md:text-base">
+        Stay updated with the latest anime airing times!
+      </h3>
       <div className="bg-secondary/25 rounded-sm px-4 py-2 font-semibold">
         Current Time: {formattedTime}
       </div>
-      <h6 className="text-xs font-light text-foreground/75">
+      <h6 className="text-foreground/75 text-xs font-light">
         * Airing times might change depending on the broadcaster
       </h6>
     </div>

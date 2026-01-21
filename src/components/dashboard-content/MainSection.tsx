@@ -34,12 +34,12 @@ export default function MainSection() {
       {/* Buttons */}
       <div className="flex justify-between">
         {/* Filter */}
-        <div className="flex items-center divide-x rounded-sm border">
+        <div className="flex w-fit items-center divide-x rounded-sm border">
           {(["newest", "popular", "trending"] as Preset[]).map((item) => (
             <button
               key={item}
               className={cn(
-                "hover:text-primary cursor-pointer px-4 py-1 text-sm uppercase transition",
+                "hover:text-primary cursor-pointer px-4 py-2 text-sm uppercase transition",
                 preset === item ? "text-primary" : "",
               )}
               onClick={() => handlePreset(item)}
@@ -48,8 +48,8 @@ export default function MainSection() {
             </button>
           ))}
         </div>
-        {/* Paging */}
-        <div className="flex items-center gap-1 rounded-sm border">
+        {/* Paging Desktop */}
+        <div className="hidden w-fit items-center gap-1 rounded-sm border sm:flex">
           <Button onClick={() => handlePrevious()} disabled={currentPage <= 1} variant={"none"}>
             <ChevronLeft />
           </Button>
@@ -61,6 +61,18 @@ export default function MainSection() {
       </div>
       {/* Content */}
       {loading ? <AnimeCardSkeleton count={5} /> : <AnimeCardList results={data.results} />}
+      {/* Paging Mobile */}
+      <div className="mt-2 flex w-full justify-center">
+        <div className="flex w-fit items-center gap-1 rounded-sm border sm:hidden">
+          <Button onClick={() => handlePrevious()} disabled={currentPage <= 1} variant={"none"}>
+            <ChevronLeft />
+          </Button>
+          <div className="border-x px-4 text-sm">{currentPage}</div>
+          <Button onClick={() => handleNext()} disabled={!data.hasNextPage} variant={"none"}>
+            <ChevronRight />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

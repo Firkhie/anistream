@@ -44,21 +44,40 @@ export default function Sidebar() {
     <>
       {/* Desktop */}
       <div className="bg-background fixed top-16 left-0 z-40 hidden h-full w-20 flex-col border-r md:flex">
-        {sidebarItems.map((item) => (
-          <Link
-            key={item.title}
-            href={item.path}
-            className={cn(
-              "flex flex-col items-center gap-2 border-b px-2 py-5",
-              pathname === item.path && "border-r-primary border-r-3",
-            )}
-          >
-            <item.icon className={cn("h-5 w-5", pathname === item.path && "text-primary")} />
-            <span className={cn("text-xs", pathname === item.path && "text-primary")}>
-              {item.title}
-            </span>
-          </Link>
-        ))}
+        {sidebarItems.map((item) => {
+          const isActive = pathname === item.path;
+
+          return (
+            <Link
+              key={item.title}
+              href={item.path}
+              className={cn(
+                "group flex flex-col items-center gap-2 border-b px-2 py-5",
+                "border-r-3 border-r-transparent",
+                "transition-colors duration-200 ease-out",
+                "hover:border-r-primary",
+                isActive && "border-r-primary",
+              )}
+            >
+              <item.icon
+                className={cn(
+                  "h-5 w-5 transition-colors duration-200 ease-out",
+                  "group-hover:text-primary",
+                  isActive && "text-primary",
+                )}
+              />
+              <span
+                className={cn(
+                  "text-xs transition-colors duration-200 ease-out",
+                  "group-hover:text-primary",
+                  isActive && "text-primary",
+                )}
+              >
+                {item.title}
+              </span>
+            </Link>
+          );
+        })}
       </div>
 
       {/* Mobile */}
@@ -81,7 +100,7 @@ export default function Sidebar() {
         <hr />
 
         {/* Content */}
-        <div className="flex flex-col gap-2 p-3">
+        <div className="flex flex-col gap-2 p-3 text-sm">
           {sidebarItems.map((item) => (
             <Link
               key={item.title}
