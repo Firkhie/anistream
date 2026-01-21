@@ -56,7 +56,7 @@ export default async function Hero() {
             return (
               <CarouselItem
                 key={anime.id}
-                className="relative flex h-[350px] w-full items-end rounded-sm bg-cover bg-center select-none lg:h-[480px]"
+                className="relative flex h-[284px] w-full items-end rounded-sm bg-cover bg-center select-none md:h-[350px] lg:h-[480px]"
                 style={{
                   backgroundImage: `url(${anime.bannerImage})`,
                 }}
@@ -77,8 +77,12 @@ export default async function Hero() {
                         );
                       })}
                     </div>
-                    <h1 className="line-clamp-2 text-3xl font-semibold lg:text-4xl">{title}</h1>
-                    <div className="line-clamp-2 text-sm lg:line-clamp-3">{parse(description)}</div>
+                    <h1 className="line-clamp-2 text-2xl font-semibold text-white md:text-3xl lg:text-4xl">
+                      {title}
+                    </h1>
+                    <div className="hidden text-sm text-white md:line-clamp-2 lg:line-clamp-3">
+                      {parse(description)}
+                    </div>
                   </div>
                   {/* Buttons */}
                   <div className="flex flex-1 items-end gap-2 lg:justify-end">

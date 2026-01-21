@@ -62,41 +62,42 @@ export default function Sidebar() {
       </div>
 
       {/* Mobile */}
-      {isOpen && (
-        <div className="bg-background fixed top-0 left-0 z-90 flex h-full w-full flex-col gap-1 md:hidden">
-          {/* Header */}
-          <div className="flex items-center justify-between gap-3 p-3">
-            <Logo />
-            <Button size={"round"} variant={"secondary"} onClick={() => setIsOpen()}>
-              <X />
-            </Button>
-          </div>
 
-          <hr />
-
-          {/* Content */}
-          <div className="flex flex-col gap-2 p-3">
-            {sidebarItems.map((item) => (
-              <Link
-                key={item.title}
-                href={item.path}
-                className={cn(
-                  "flex items-center gap-2 rounded-sm px-3 py-5",
-                  pathname === item.path
-                    ? "bg-primary/15 border-primary border-r-4"
-                    : "bg-muted/25",
-                )}
-                onClick={() => setIsOpen()}
-              >
-                <item.icon className={cn("h-5 w-5", pathname === item.path && "text-primary")} />
-                <span className={cn("", pathname === item.path && "text-primary")}>
-                  {item.title}
-                </span>
-              </Link>
-            ))}
-          </div>
+      <div
+        className={cn(
+          "bg-background fixed top-0 left-0 z-90 flex h-full w-full flex-col gap-1 md:hidden",
+          "transition-transform duration-300 ease-in-out",
+          isOpen ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between gap-3 p-3">
+          <Logo />
+          <Button size={"round"} variant={"secondary"} onClick={() => setIsOpen()}>
+            <X />
+          </Button>
         </div>
-      )}
+
+        <hr />
+
+        {/* Content */}
+        <div className="flex flex-col gap-2 p-3">
+          {sidebarItems.map((item) => (
+            <Link
+              key={item.title}
+              href={item.path}
+              className={cn(
+                "flex items-center gap-2 rounded-sm px-3 py-5",
+                pathname === item.path ? "bg-primary/15 border-primary border-r-4" : "bg-muted/25",
+              )}
+              onClick={() => setIsOpen()}
+            >
+              <item.icon className={cn("h-5 w-5", pathname === item.path && "text-primary")} />
+              <span className={cn("", pathname === item.path && "text-primary")}>{item.title}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
     </>
   );
 }
