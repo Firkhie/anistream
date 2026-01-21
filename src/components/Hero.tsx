@@ -19,6 +19,7 @@ import {
   Star,
 } from "lucide-react";
 import { Badge } from "./ui/Badge";
+import Link from "next/link";
 
 const heroBadges: {
   key: "format" | "currentEpisode" | "rating" | "year";
@@ -43,7 +44,7 @@ export default async function Hero() {
       <CarouselContent>
         {data.results
           .filter((item) => item.bannerImage)
-          .map((anime) => {
+          .map((anime, index) => {
             const title =
               anime.title?.userPreferred ||
               anime.title?.romaji ||
@@ -55,7 +56,7 @@ export default async function Hero() {
 
             return (
               <CarouselItem
-                key={anime.id}
+                key={`${index}_${anime.id}`}
                 className="relative flex h-[284px] w-full items-end rounded-sm bg-cover bg-center select-none md:h-[350px] lg:h-[480px]"
                 style={{
                   backgroundImage: `url(${anime.bannerImage})`,
@@ -86,14 +87,18 @@ export default async function Hero() {
                   </div>
                   {/* Buttons */}
                   <div className="flex flex-1 items-end gap-2 lg:justify-end">
-                    <Button size={"lg"} variant={"secondary"}>
-                      <Info />
-                      Details
-                    </Button>
-                    <Button size={"lg"} variant={"secondary"}>
-                      <PlayCircle />
-                      Watch Now
-                    </Button>
+                    <Link href={`/detail/${anime.id}`}>
+                      <Button size={"lg"} variant={"secondary"}>
+                        <Info />
+                        Details
+                      </Button>
+                    </Link>
+                    <Link href={`/watch/${anime.id}?ep=1`}>
+                      <Button size={"lg"} variant={"secondary"}>
+                        <PlayCircle />
+                        Watch Now
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CarouselItem>
