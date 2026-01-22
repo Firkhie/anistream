@@ -123,7 +123,7 @@
 
 @layer components {
   .my-react-select-container {
-    @apply text-[13px];
+    @apply shrink-0 text-[13px];
   }
 
   /* CONTROL */
