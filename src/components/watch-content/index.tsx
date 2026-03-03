@@ -9,13 +9,16 @@ import VideoPlayerSection from "./VideoPlayerSection";
 export type DetailPreset = "overview" | "watch" | "characters";
 
 export default async function WatchContent({ slug }: { slug: string }) {
+  console.log("ini slug", slug);
   return (
     <div className="flex flex-col gap-5">
       <VideoPlayerSection />
       <WatchSection className="max-h-52" />
       <div className="flex w-full gap-2">
         <div className="flex-1">
-          <InfoSection />
+          <Suspense fallback={<>Loading...</>}>
+            <InfoSection animeId={slug} />
+          </Suspense>
           <CommentSection />
         </div>
         <div className="flex shrink-0 flex-col gap-4 lg:w-96">
