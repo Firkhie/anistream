@@ -17,9 +17,9 @@ import useAnimeBaseById from "@/hooks/useAnimeBaseById";
 export type WatchView = "detail" | "grid" | "list";
 
 const layoutClass: Record<WatchView, string> = {
-  detail: "grid-cols-3",
-  list: "grid-cols-4",
-  grid: "grid-cols-10",
+  detail: "grid-cols-[repeat(auto-fill,minmax(393px,1fr))]",
+  list: "grid-cols-[repeat(auto-fill,minmax(256px,1fr))]",
+  grid: "grid-cols-[repeat(auto-fill,minmax(84px,1fr))]",
 };
 
 export default function WatchSection({ className }: { className?: string }) {

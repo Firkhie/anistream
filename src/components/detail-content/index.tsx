@@ -14,7 +14,7 @@ export default async function DetailContent({ slug }: { slug: string }) {
   return (
     <div className="flex flex-col gap-5">
       <DetailHero banner={data.bannerImage ?? "/assets/test.png"} />
-      <div className="flex flex-row gap-5 px-5">
+      <div className="flex flex-col md:gap-2 gap-5 px-2 md:px-5 lg:flex-row">
         <InfoPanel data={data} />
         <DetailMain data={data} />
       </div>
