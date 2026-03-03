@@ -14,13 +14,17 @@ export default async function WatchContent({ slug }: { slug: string }) {
     <div className="flex flex-col gap-5">
       <VideoPlayerSection />
       <WatchSection className="max-h-52" />
-      <div className="flex w-full gap-2">
-        <div className="flex-1">
+
+      <div className="flex w-full items-start gap-4">
+        {/* Left */}
+        <div className="flex flex-1 flex-col gap-3">
           <Suspense fallback={<>Loading...</>}>
             <InfoSection animeId={slug} />
           </Suspense>
           <CommentSection />
         </div>
+
+        {/* Right */}
         <div className="flex shrink-0 flex-col gap-4 lg:w-96">
           <Suspense fallback={<AnimeRankSkeleton count={3} sectionType="relations" />}>
             <AnimeRankLoader sectionType="relations" animeId={slug} />
