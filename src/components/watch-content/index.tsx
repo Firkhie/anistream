@@ -30,7 +30,7 @@ export default async function WatchContent({ slug, epsId }: { slug: string; epsI
       <VideoPlayerSection streamData={streamData} />
       <WatchSection className="max-h-52" currentEps={epsId} />
 
-      <div className="flex w-full items-start gap-4">
+      <div className="flex w-full flex-col items-start gap-4 xl:flex-row">
         {/* Left */}
         <div className="flex flex-1 flex-col gap-3">
           <Suspense fallback={<>Loading...</>}>
@@ -40,7 +40,7 @@ export default async function WatchContent({ slug, epsId }: { slug: string; epsI
         </div>
 
         {/* Right */}
-        <div className="flex shrink-0 flex-col gap-4 lg:w-96">
+        <div className="flex w-full shrink-0 flex-col gap-4 xl:w-96">
           <Suspense fallback={<AnimeRankSkeleton count={3} sectionType="relations" />}>
             <AnimeRankLoader sectionType="relations" animeId={slug} />
           </Suspense>

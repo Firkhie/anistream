@@ -2,10 +2,6 @@ import getAnimeDetailById from "@/lib/getAnimeDetailById";
 import { formatPlainDate } from "@/lib/utils";
 import { AnimeDetail } from "@/types";
 import parse from "html-react-parser";
-import Image from "next/image";
-import { Button } from "../ui/Button";
-import { NotebookPen, Play } from "lucide-react";
-import AnimeButton from "../anime/AnimeButton";
 import InfoActions from "./InfoActions";
 
 export default async function InfoSection({ animeId }: { animeId: string }) {
@@ -28,36 +24,33 @@ export default async function InfoSection({ animeId }: { animeId: string }) {
       {/* Left Side */}
       <InfoActions
         animeId={data.id}
-        malId={data.idMal}
+        malId={data.idMal ?? 0}
         trailer={data.trailer}
-        coverImage={data.coverImage}
+        coverImage={data.coverImage ?? "/assets/not-found.png"}
         title={title}
       />
       {/* Right Side */}
-      <div className="flex flex-col gap-3 text-sm">
-        <div>
+      <div className="flex flex-col gap-3 text-sm sm:gap-4">
+        <div className="flex flex-col gap-1.5">
           <h2 className="text-lg font-bold">{title}</h2>
           <h3 style={{ color: textColor }}>{nativeTitle}</h3>
         </div>
 
-        <div>{parse(description)}</div>
+        <div className="text-muted-foreground/85 line-clamp-4">{parse(description)}</div>
 
-        <div className="grid grid-cols-2 gap-x-12 gap-y-2">
-          <InfoItem label="Status" value={data.status} />
-          <InfoItem label="Format" value={data.format} />
-          <InfoItem label="Total Episodes" value={data.totalEpisodes} />
-          <InfoItem label="Current Episode" value={data.currentEpisode} />
-          <InfoItem label="Season" value={data.season} />
-          <InfoItem label="Rating" value={data.rating} />
+        <div className="hidden grid-cols-1 gap-x-12 gap-y-2 sm:grid md:grid-cols-2">
+          <InfoItem label="Status" value={data.status ?? "-"} />
+          <InfoItem label="Format" value={data.format ?? "-"} />
+          <InfoItem label="Total Episodes" value={data.totalEpisodes ?? "-"} />
+          <InfoItem label="Current Episode" value={data.currentEpisode ?? "-"} />
+          <InfoItem label="Season" value={data.season ?? "-"} />
+          <InfoItem label="Rating" value={data.rating ?? "-"} />
           <InfoItem
             label="Start Date"
-            value={data.startDate ? formatPlainDate(data.startDate) : undefined}
+            value={data.startDate ? formatPlainDate(data.startDate) : "-"}
           />
-          <InfoItem
-            label="End Date"
-            value={data.endDate ? formatPlainDate(data.endDate) : undefined}
-          />
-          <InfoItem label="Country" value={data.countryOfOrigin} />
+          <InfoItem label="End Date" value={data.endDate ? formatPlainDate(data.endDate) : "-"} />
+          <InfoItem label="Country" value={data.countryOfOrigin ?? "-"} />
           <InfoItem label="Adult" value={data.isAdult ? "Yes" : "No"} />
         </div>
       </div>
@@ -65,10 +58,10 @@ export default async function InfoSection({ animeId }: { animeId: string }) {
   );
 }
 
-function InfoItem({ label, value }: { label: string; value?: string | number }) {
+function InfoItem({ label, value }: { label: string; value: string | number }) {
   return (
     <p className="text-foreground/60">
-      {label}: <span className="text-foreground font-semibold">{value ?? "N/A"}</span>
+      {label}: <span className="text-foreground font-semibold">{value}</span>
     </p>
   );
 }

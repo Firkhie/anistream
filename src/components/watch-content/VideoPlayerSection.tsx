@@ -112,7 +112,7 @@ export default function VideoPlayerSection({ streamData }: { streamData?: Stream
   }, [streamData]);
 
   return (
-    <div className="relative aspect-video max-h-[700px] w-full overflow-hidden rounded-sm bg-black">
+    <div className="relative z-10 aspect-video max-h-[700px] w-full overflow-hidden rounded-sm bg-black">
       <div ref={containerRef} className="h-full w-full" />
 
       {error && (

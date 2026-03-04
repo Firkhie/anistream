@@ -16,9 +16,9 @@ type Props = {
 
 export default function InfoActions({ animeId, malId, trailer, coverImage, title }: Props) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       {/* Image */}
-      <Link href={`/detail/${animeId}`} className="group w-44 shrink-0">
+      <Link href={`/detail/${animeId}`} className="group w-36 shrink-0 sm:w-44">
         <div className="relative aspect-2/3 overflow-hidden rounded-sm">
           <Image
             src={coverImage ?? "/assets/not-found.png"}
@@ -31,7 +31,7 @@ export default function InfoActions({ animeId, malId, trailer, coverImage, title
       </Link>
 
       {/* Buttons */}
-      <div className="hidden flex-col gap-2 lg:flex">
+      <div className="hidden flex-col gap-2 sm:flex">
         <Button size="lg" variant="custom">
           <Play size={18} />
           Trailer
