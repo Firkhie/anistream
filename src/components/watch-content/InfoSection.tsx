@@ -3,6 +3,7 @@ import { formatPlainDate } from "@/lib/utils";
 import { AnimeDetail } from "@/types";
 import parse from "html-react-parser";
 import InfoActions from "./InfoActions";
+import GenreBadge from "../GenreBadges";
 
 export default async function InfoSection({ animeId }: { animeId: string }) {
   const data: AnimeDetail = await getAnimeDetailById({ id: animeId });
@@ -17,7 +18,7 @@ export default async function InfoSection({ animeId }: { animeId: string }) {
 
   const nativeTitle = data.title?.native ?? "-";
   const description = data.description ?? "No description found.";
-  const textColor = data.color ?? "#ffffff";
+  const aniColor = data.color ?? "#ffffff";
 
   return (
     <div className="flex gap-3 rounded-sm border p-3">
@@ -30,10 +31,19 @@ export default async function InfoSection({ animeId }: { animeId: string }) {
         title={title}
       />
       {/* Right Side */}
-      <div className="flex flex-col gap-3 text-sm sm:gap-4">
+      <div className="flex flex-col gap-3 overflow-hidden text-sm sm:gap-4">
         <div className="flex flex-col gap-1.5">
-          <h2 className="text-lg font-bold">{title}</h2>
-          <h3 style={{ color: textColor }}>{nativeTitle}</h3>
+          <h2 className="line-clamp-2 text-lg font-bold">{title}</h2>
+          <h3 className="ine-clamp-1" style={{ color: aniColor }}>
+            {nativeTitle}
+          </h3>
+          {data.genres && data.genres.length > 0 && (
+            <div className="scrollbar-hidden mt-1 flex flex-nowrap gap-1.5 overflow-x-scroll">
+              {data.genres.map((genre) => (
+                <GenreBadge key={genre} genre={genre} color={aniColor} />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="text-muted-foreground/85 line-clamp-4">{parse(description)}</div>

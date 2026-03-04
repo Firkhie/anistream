@@ -32,7 +32,7 @@ export default async function WatchContent({ slug, epsId }: { slug: string; epsI
 
       <div className="flex w-full flex-col items-start gap-4 xl:flex-row">
         {/* Left */}
-        <div className="flex flex-1 flex-col gap-3">
+        <div className="flex w-full flex-col gap-3">
           <Suspense fallback={<>Loading...</>}>
             <InfoSection animeId={slug} />
           </Suspense>

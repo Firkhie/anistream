@@ -1,7 +1,7 @@
 import { cn, formatPlainDate } from "@/lib/utils";
 import { AnimeDetail } from "@/types";
-import { Badge } from "../ui/Badge";
 import parse from "html-react-parser";
+import GenreBadge from "../GenreBadges";
 
 export type MetaDetailView = "desktop" | "mobile";
 
@@ -12,6 +12,8 @@ const layoutClass: Record<MetaDetailView, string> = {
 
 export default function MetaDetail({ data, view }: { data: AnimeDetail; view: MetaDetailView }) {
   const description = data?.description || "No description found.";
+  const aniColor = data.color || "white";
+
   return (
     <div className="flex flex-col gap-2">
       <div className={cn("bg-secondary/50 rounded-sm p-3 text-sm", layoutClass[view])}>
@@ -69,9 +71,7 @@ export default function MetaDetail({ data, view }: { data: AnimeDetail; view: Me
             <span className="font-bold">Genres</span>
             <div className="flex shrink-0 flex-wrap gap-1">
               {data.genres.map((genre) => (
-                <Badge key={genre} className="bg-primary rounded-sm">
-                  {genre}
-                </Badge>
+                <GenreBadge key={genre} genre={genre} color={aniColor} />
               ))}
             </div>
           </div>

@@ -1,11 +1,11 @@
 import { AnimeBasic } from "@/types";
 import Image from "next/image";
-import { Badge } from "../ui/Badge";
 import parse from "html-react-parser";
 import AnimeButton from "./AnimeButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { currentYear } from "@/constants/years";
+import GenreBadge from "../GenreBadges";
 
 export default function AnimeInfoCard(anime: AnimeBasic) {
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
     "Untitled";
 
   const description = anime.description || "No description found.";
-  const textColor = anime.color || "white";
+  const aniColor = anime.color || "white";
 
   const handleCardClick = () => {
     router.push(`/detail/${anime.id}`);
@@ -87,7 +87,7 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
           <h3 className="line-clamp-2 text-lg font-semibold md:text-xl">{title}</h3>
           <span
             className="line-clamp-1 text-sm font-light md:line-clamp-2"
-            style={{ color: textColor }}
+            style={{ color: aniColor }}
           >
             {subTitle}
           </span>
@@ -98,16 +98,7 @@ export default function AnimeInfoCard(anime: AnimeBasic) {
 
         <div className="scrollbar-hidden flex gap-1.5 overflow-x-scroll">
           {anime.genres?.map((genre) => (
-            <Badge
-              key={genre}
-              className="hover:bg-muted-foreground/35 cursor-pointer rounded-sm px-4 py-1"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleGenreClick(genre);
-              }}
-            >
-              {genre}
-            </Badge>
+            <GenreBadge key={genre} genre={genre} color={aniColor} />
           ))}
         </div>
       </div>
