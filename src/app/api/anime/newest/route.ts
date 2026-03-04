@@ -7,7 +7,9 @@ export async function GET(request: NextRequest) {
 
   const url = `https://anistream-api-nine.vercel.app/anime/newest?page=${page}&perPage=${perPage}`;
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    next: { revalidate: 3600 },
+  });
   const data = await res.json();
 
   return Response.json(data);

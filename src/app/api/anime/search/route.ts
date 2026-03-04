@@ -5,7 +5,9 @@ export async function GET(request: NextRequest) {
 
   const url = `https://anistream-api-nine.vercel.app/anime/search?${params}`;
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    cache: "no-store",
+  });
   const data = await res.json();
 
   return Response.json(data);
