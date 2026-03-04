@@ -121,6 +121,23 @@
   }
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e21d48;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ab1a39;
+}
+
 @layer components {
   .my-react-select-container {
     @apply shrink-0 text-[13px];
