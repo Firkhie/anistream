@@ -5,7 +5,8 @@ export async function GET(request: NextRequest) {
   const page = searchParams.get("page");
   const perPage = searchParams.get("perPage");
 
-  const url = `https://anistream-api-nine.vercel.app/anime/trending?page=${page}&perPage=${perPage}`;
+  const baseUrl = process.env.NEXT_PUBLIC_ANISTREAM_API;
+  const url = `${baseUrl}/anime/trending?page=${page}&perPage=${perPage}`;
 
   const res = await fetch(url, {
     next: { revalidate: 21600 },

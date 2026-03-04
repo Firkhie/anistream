@@ -3,7 +3,8 @@ import { type NextRequest } from "next/server";
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams.toString();
 
-  const url = `https://anistream-api-nine.vercel.app/anime/servers?${params}`;
+  const baseUrl = process.env.NEXT_PUBLIC_ANISTREAM_API;
+  const url = `${baseUrl}/anime/servers?${params}`;
 
   const res = await fetch(url, {
     cache: "no-store",

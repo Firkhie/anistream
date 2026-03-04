@@ -4,7 +4,8 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const id = searchParams.get("id");
 
-  const url = `https://anistream-api-nine.vercel.app/anime/base/${id}`;
+  const baseUrl = process.env.NEXT_PUBLIC_ANISTREAM_API;
+  const url = `${baseUrl}/anime/base/${id}`;
 
   const res = await fetch(url, {
     next: { revalidate: 21600 },
