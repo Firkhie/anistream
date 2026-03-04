@@ -22,7 +22,13 @@ const layoutClass: Record<WatchView, string> = {
   grid: "grid-cols-[repeat(auto-fill,minmax(84px,1fr))]",
 };
 
-export default function WatchSection({ className }: { className?: string }) {
+export default function WatchSection({
+  className,
+  currentEps,
+}: {
+  className?: string;
+  currentEps?: string;
+}) {
   const { slug } = useParams();
   const { data: dataEpisodes, loading: loadingEpisodes } = useAnimeEpisodesById({
     id: slug as string,
@@ -87,11 +93,26 @@ export default function WatchSection({ className }: { className?: string }) {
             (eps) =>
               dataBase &&
               (view === "detail" ? (
-                <AnimeEpisodeCardV1 key={eps.episode} animeBase={dataBase} eps={eps} />
+                <AnimeEpisodeCardV1
+                  key={eps.episode}
+                  animeBase={dataBase}
+                  eps={eps}
+                  currentEps={currentEps}
+                />
               ) : view === "grid" ? (
-                <AnimeEpisodeCardV2 key={eps.episode} animeBase={dataBase} eps={eps} />
+                <AnimeEpisodeCardV2
+                  key={eps.episode}
+                  animeBase={dataBase}
+                  eps={eps}
+                  currentEps={currentEps}
+                />
               ) : (
-                <AnimeEpisodeCardV3 key={eps.episode} animeBase={dataBase} eps={eps} />
+                <AnimeEpisodeCardV3
+                  key={eps.episode}
+                  animeBase={dataBase}
+                  eps={eps}
+                  currentEps={currentEps}
+                />
               )),
           )}
         </div>

@@ -28,7 +28,7 @@ export default async function WatchContent({ slug, epsId }: { slug: string; epsI
   return (
     <div className="flex flex-col gap-5">
       <VideoPlayerSection streamData={streamData} />
-      <WatchSection className="max-h-52" />
+      <WatchSection className="max-h-52" currentEps={epsId} />
 
       <div className="flex w-full items-start gap-4">
         {/* Left */}
