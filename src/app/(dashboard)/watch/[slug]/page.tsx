@@ -21,9 +21,5 @@ export default async function WatchPage({
     }
   }
 
-  return (
-    <Suspense fallback={<>Loading</>}>
-      <WatchContent slug={slug} epsId={epsId!} />
-    </Suspense>
-  );
+  return <WatchContent slug={slug} epsId={epsId!} />;
 }

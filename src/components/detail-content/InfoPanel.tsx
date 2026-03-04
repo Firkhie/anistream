@@ -7,8 +7,19 @@ import { NotebookPen, Play } from "lucide-react";
 import AnimeButton from "../anime/AnimeButton";
 import { AnimeDetail } from "@/types";
 import MetaDetail from "./MetaDetail";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function InfoPanel({ data }: { data: AnimeDetail }) {
+  const router = useRouter();
+
+  const handleWatchNow = () => {
+    router.push(`/watch/${data.id}`);
+  };
+  const handleAddToList = () => {
+    toast.info("You need to login first to use this feature.");
+  };
+
   const title =
     data?.title?.userPreferred ||
     data?.title?.romaji ||
@@ -34,10 +45,10 @@ export default function InfoPanel({ data }: { data: AnimeDetail }) {
 
         {/* Action Desktop */}
         <div className="hidden flex-col gap-2 lg:flex">
-          <Button size="lg" variant="custom">
+          <Button size="lg" variant="custom" onClick={handleWatchNow}>
             <Play /> Watch Now
           </Button>
-          <Button size="lg" variant="custom">
+          <Button size="lg" variant="custom" onClick={handleAddToList}>
             <NotebookPen /> Add To List
           </Button>
 
@@ -51,10 +62,10 @@ export default function InfoPanel({ data }: { data: AnimeDetail }) {
         <div className="relative top-24 left-2 flex w-full flex-col gap-2 lg:hidden">
           <h2 className="text-lg font-bold">{title}</h2>
           <div className="flex gap-2">
-            <Button size="lg" variant="custom" className="flex-1">
+            <Button size="lg" variant="custom" className="flex-1" onClick={handleAddToList}>
               <NotebookPen /> Add To List
             </Button>
-            <Button size="lg" variant="custom">
+            <Button size="lg" variant="custom" onClick={handleWatchNow}>
               <Play />
             </Button>
           </div>
