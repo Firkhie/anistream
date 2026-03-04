@@ -5,14 +5,29 @@ import CommentSection from "./CommentSection";
 import { Suspense } from "react";
 import AnimeRankSkeleton from "../anime/AnimeRankSkeleton";
 import VideoPlayerSection from "./VideoPlayerSection";
+import getAnimeServersByEpsId from "@/lib/getAnimeServersByEpsId";
+import getAnimeStreamByEpsId from "@/lib/getAnimeStreamByEpsId";
 
 export type DetailPreset = "overview" | "watch" | "characters";
 
-export default async function WatchContent({ slug }: { slug: string }) {
-  console.log("ini slug", slug);
+export default async function WatchContent({ slug, epsId }: { slug: string; epsId: string }) {
+  const servers = await getAnimeServersByEpsId({ epsId });
+
+  if (!servers || servers.length === 0) {
+    return <div>No servers available</div>;
+  }
+
+  const firstServer = servers[0];
+
+  const streamData = await getAnimeStreamByEpsId({
+    epsId,
+    server: firstServer.serverName.toLowerCase(),
+    type: firstServer.type,
+  });
+
   return (
     <div className="flex flex-col gap-5">
-      <VideoPlayerSection />
+      <VideoPlayerSection streamData={streamData} />
       <WatchSection className="max-h-52" />
 
       <div className="flex w-full items-start gap-4">

@@ -93,7 +93,7 @@ export default async function Hero() {
                         Details
                       </Button>
                     </Link>
-                    <Link href={`/watch/${anime.id}?ep=1`}>
+                    <Link href={`/watch/${anime.id}`}>
                       <Button size={"lg"} variant={"secondary"}>
                         <PlayCircle />
                         Watch Now

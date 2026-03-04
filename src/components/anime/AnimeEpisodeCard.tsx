@@ -6,7 +6,7 @@ import Link from "next/link";
 function AnimeEpisodeCardV1({ animeBase, eps }: { animeBase: AnimeBase; eps: AnimeEpisode }) {
   return (
     <Link
-      href={`/watch/${animeBase.id}?ep=${eps.episode}`}
+      href={`/watch/${animeBase.id}?epsId=${eps.id}`}
       className="bg-secondary/75 flex h-[100px] rounded-sm hover:opacity-50"
       onClick={() => saveWatchHistory({ animeBase, eps })}
     >
@@ -37,7 +37,7 @@ function AnimeEpisodeCardV1({ animeBase, eps }: { animeBase: AnimeBase; eps: Ani
 function AnimeEpisodeCardV2({ animeBase, eps }: { animeBase: AnimeBase; eps: AnimeEpisode }) {
   return (
     <Link
-      href={`/watch/${animeBase.id}?ep=${eps.episode}`}
+      href={`/watch/${animeBase.id}?epsId=${eps.id}`}
       className="bg-secondary/75 rounded-sm p-2 text-center hover:opacity-50"
       onClick={() => saveWatchHistory({ animeBase, eps })}
     >
@@ -49,7 +49,7 @@ function AnimeEpisodeCardV2({ animeBase, eps }: { animeBase: AnimeBase; eps: Ani
 function AnimeEpisodeCardV3({ animeBase, eps }: { animeBase: AnimeBase; eps: AnimeEpisode }) {
   return (
     <Link
-      href={`/watch/${animeBase.id}?ep=${eps.episode}`}
+      href={`/watch/${animeBase.id}?epsId=${eps.id}`}
       className="bg-secondary/75 rounded-md p-2 hover:opacity-50"
       onClick={() => saveWatchHistory({ animeBase, eps })}
     >

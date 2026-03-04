@@ -83,14 +83,16 @@ export default function WatchSection({ className }: { className?: string }) {
             className,
           )}
         >
-          {episodes.map((eps) =>
-            view === "detail" ? (
-              <AnimeEpisodeCardV1 key={eps.episode} animeBase={dataBase!} eps={eps} />
-            ) : view === "grid" ? (
-              <AnimeEpisodeCardV2 key={eps.episode} animeBase={dataBase!} eps={eps} />
-            ) : (
-              <AnimeEpisodeCardV3 key={eps.episode} animeBase={dataBase!} eps={eps} />
-            ),
+          {episodes.map(
+            (eps) =>
+              dataBase &&
+              (view === "detail" ? (
+                <AnimeEpisodeCardV1 key={eps.episode} animeBase={dataBase} eps={eps} />
+              ) : view === "grid" ? (
+                <AnimeEpisodeCardV2 key={eps.episode} animeBase={dataBase} eps={eps} />
+              ) : (
+                <AnimeEpisodeCardV3 key={eps.episode} animeBase={dataBase} eps={eps} />
+              )),
           )}
         </div>
       ) : (
