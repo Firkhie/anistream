@@ -11,9 +11,7 @@ export default async function getAnimeByPreset({
   page = 1,
   perPage = 20,
 }: getAnimeByPresetParams) {
-  const host = process.env.NODE_ENV === "production" ? "" : process.env.NEXT_PUBLIC_APP_HOST;
-
-  const res = await fetch(`${host}/api/anime/${preset}?page=${page}&perPage=${perPage}`, {
+  const res = await fetch(`/api/anime/${preset}?page=${page}&perPage=${perPage}`, {
     next: { revalidate: 86400 },
   }).then((res) => res.json());
 

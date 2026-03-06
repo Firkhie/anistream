@@ -14,9 +14,8 @@ export default async function getAnimeBySeason({
   };
 
   const params = new URLSearchParams(filters).toString();
-  const host = process.env.NODE_ENV === "production" ? "" : process.env.NEXT_PUBLIC_APP_HOST;
 
-  const res = await fetch(`${host}/api/anime/search?${params}`, {
+  const res = await fetch(`/api/anime/search?${params}`, {
     next: { revalidate: 86400 },
   }).then((res) => res.json());
 
