@@ -82,7 +82,7 @@ export default function WatchSection({
       </div>
 
       {/* Episodes */}
-      {!loadingEpisodes ? (
+      {loadingEpisodes ? (
         <>
           {view === "detail" ? (
             <AnimeEpisodeCardSkeletonV1 count={2} />
@@ -128,7 +128,7 @@ export default function WatchSection({
           )}
         </div>
       ) : (
-        <div className="text-sm">Episodes not found.</div>
+        <div className="text-muted-foreground text-sm">Episodes not found.</div>
       )}
     </div>
   );

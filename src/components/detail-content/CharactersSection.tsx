@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import Select from "react-select";
 import AnimeCharacterCard from "../anime/AnimeCharacterCard";
+import AnimeCharacterCardSkeleton from "../anime/AnimeCharacterCardSkeleton";
 
 type LanguageOption = {
   value: string;
@@ -22,9 +23,6 @@ export default function CharactersSection() {
   const { data, loading } = useAnimeCharactersById({ id: slug as string });
 
   const [selectedLang, setSelectedLang] = useState<LanguageOption>(languageOptions[0]);
-
-  if (loading) return <div>Loading...</div>;
-  if (!data?.results?.length) return <div>Characters not found.</div>;
 
   return (
     <div className="flex flex-col gap-3">
@@ -46,11 +44,17 @@ export default function CharactersSection() {
       </div>
 
       {/* Characters */}
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(398px,1fr))] gap-2">
-        {data.results.map((char) => (
-          <AnimeCharacterCard key={char.id} char={char} lang={selectedLang} />
-        ))}
-      </div>
+      {loading ? (
+        <AnimeCharacterCardSkeleton count={3} />
+      ) : !data?.results?.length ? (
+        <div className="text-muted-foreground text-sm">Characters not found.</div>
+      ) : (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(398px,1fr))] gap-2">
+          {data.results.map((char) => (
+            <AnimeCharacterCard key={char.id} char={char} lang={selectedLang} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
