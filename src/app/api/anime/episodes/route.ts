@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const url = `${baseUrl}/anime/episodes/${id}?provider=${STREAM_SOURCE}`;
 
   const res = await fetch(url, {
-    cache: "no-store",
+    next: { revalidate: 21600 },
   });
   const data = await res.json();
 
