@@ -9,8 +9,13 @@ export default async function getAnimeStreamByEpsId({
   type?: string;
   source: "hianime" | "yumaapi";
 }) {
+  const host =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_APP_URL
+      : process.env.NEXT_PUBLIC_APP_HOST;
+
   const res = await fetch(
-    `/api/anime/episode/stream?id=${epsId}&server=${server}&type=${type}&source=${source}`,
+    `${host}/api/anime/episode/stream?id=${epsId}&server=${server}&type=${type}&source=${source}`,
     {
       next: { revalidate: 86400 },
     },

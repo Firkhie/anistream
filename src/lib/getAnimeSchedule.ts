@@ -9,8 +9,13 @@ export default async function getAnimeSchedule() {
   };
 
   const params = new URLSearchParams(filters).toString();
-  const res = await fetch(`/api/anime/airing?${params}`, {
-    next: { revalidate: 86400 },
+  const host =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_APP_URL
+      : process.env.NEXT_PUBLIC_APP_HOST;
+
+  const res = await fetch(`${host}/api/anime/airing?${params}`, {
+    next: { revalidate: 86400 }, // ✅ cache 1 hari
   }).then((res) => res.json());
 
   const grouped: Record<string, typeof res.results> = {};
