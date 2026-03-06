@@ -44,8 +44,6 @@ export function saveWatchHistory({ animeBase, eps }: { animeBase: AnimeBase; eps
 
   const existHistory: HistoryEpisode[] = JSON.parse(localStorage.getItem("history_watch") || "[]");
 
-  const filtered = existHistory.filter((item) => item.id !== eps.id);
-
   const title =
     animeBase.title?.userPreferred ||
     animeBase.title?.romaji ||
@@ -53,12 +51,16 @@ export function saveWatchHistory({ animeBase, eps }: { animeBase: AnimeBase; eps
     animeBase.title?.native ||
     "Untitled";
 
+  const filtered = existHistory.filter(
+    (item) => !(item.animeTitle === title && item.episode === eps.episode),
+  );
+
   const newEps = {
     ...eps,
     animeId: animeBase.id,
     animeTitle: title,
   };
-  const updated = [newEps, ...filtered].slice(0, 25);
+  const updated = [newEps, ...filtered].slice(0, 20);
 
   localStorage.setItem("history_watch", JSON.stringify(updated));
 }
