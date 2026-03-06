@@ -10,11 +10,10 @@ export type DetailPreset = "overview" | "watch" | "characters";
 export default async function DetailContent({ slug }: { slug: string }) {
   const data: AnimeDetail = await getAnimeDetailById({ id: slug });
 
-  if (!data) return <div>404</div>;
   return (
     <div className="flex flex-col gap-5">
       <DetailHero banner={data.bannerImage ?? "/assets/test.png"} />
-      <div className="flex flex-col md:gap-2 gap-5 px-2 md:px-5 lg:flex-row">
+      <div className="flex flex-col gap-5 px-2 md:gap-2 md:px-5 lg:flex-row">
         <InfoPanel data={data} />
         <DetailMain data={data} />
       </div>
