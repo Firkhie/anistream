@@ -1,3 +1,4 @@
+import { STREAM_SOURCE } from "@/components/watch-content";
 import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -5,10 +6,10 @@ export async function GET(request: NextRequest) {
   const id = searchParams.get("id");
 
   const baseUrl = process.env.NEXT_PUBLIC_ANISTREAM_API;
-  const url = `${baseUrl}/anime/episodes/${id}`;
+  const url = `${baseUrl}/anime/episodes/${id}?provider=${STREAM_SOURCE}`;
 
   const res = await fetch(url, {
-    next: { revalidate: 21600 },
+    cache: "no-store",
   });
   const data = await res.json();
 

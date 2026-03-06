@@ -10,20 +10,32 @@ import getAnimeStreamByEpsId from "@/lib/getAnimeStreamByEpsId";
 
 export type DetailPreset = "overview" | "watch" | "characters";
 
+export const STREAM_SOURCE: "hianime" | "yumaapi" = "yumaapi";
+
 export default async function WatchContent({ slug, epsId }: { slug: string; epsId: string }) {
-  const servers = await getAnimeServersByEpsId({ epsId });
+  let streamData;
 
-  if (!servers || servers.length === 0) {
-    return <div>No servers available</div>;
+  if (STREAM_SOURCE === "hianime") {
+    const servers = await getAnimeServersByEpsId({ epsId });
+
+    if (!servers || servers.length === 0) {
+      return <div>No servers available</div>;
+    }
+
+    const firstServer = servers[0];
+
+    streamData = await getAnimeStreamByEpsId({
+      epsId,
+      server: firstServer.serverName.toLowerCase(),
+      type: firstServer.type,
+      source: "hianime",
+    });
+  } else {
+    streamData = await getAnimeStreamByEpsId({
+      epsId,
+      source: "yumaapi",
+    });
   }
-
-  const firstServer = servers[0];
-
-  const streamData = await getAnimeStreamByEpsId({
-    epsId,
-    server: firstServer.serverName.toLowerCase(),
-    type: firstServer.type,
-  });
 
   return (
     <div className="flex flex-col gap-5">

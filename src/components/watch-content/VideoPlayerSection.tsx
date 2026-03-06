@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Artplayer from "artplayer";
 import Hls from "hls.js";
+import { STREAM_SOURCE } from ".";
 
 type Track = {
   file: string;
@@ -11,15 +12,33 @@ type Track = {
   default?: boolean;
 };
 
-type StreamData = {
-  streamingLink?: {
-    link?: {
-      file?: string;
-      type?: string;
-    };
-    iframe?: string | null;
-    tracks?: Track[];
+type IntroOutro = {
+  start: number;
+  end: number;
+};
+
+type StreamingLink = {
+  id?: string;
+  type?: "sub" | "dub";
+  link?: {
+    file?: string;
+    type?: string;
   };
+  tracks?: Track[];
+  intro?: IntroOutro;
+  outro?: IntroOutro;
+  iframe?: string | null;
+  server?: string;
+};
+
+export type StreamData = {
+  streamingLink?: StreamingLink;
+  servers?: {
+    type: string;
+    data_id: string;
+    server_id: string;
+    serverName: string;
+  }[];
 };
 
 export default function VideoPlayerSection({ streamData }: { streamData?: StreamData }) {
