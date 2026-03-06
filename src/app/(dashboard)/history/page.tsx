@@ -31,6 +31,11 @@ export default function HistoryPage() {
   }, []);
 
   useEffect(() => {
+    const sorted = selectedSort.value === "desc" ? [...rawData] : [...rawData].reverse();
+    setEpisodes(sorted);
+  }, [selectedSort, rawData]);
+
+  useEffect(() => {
     if (!rawData) return;
 
     const filtered = rawData.filter((eps) => {
