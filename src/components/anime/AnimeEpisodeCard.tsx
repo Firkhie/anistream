@@ -93,7 +93,7 @@ function AnimeEpisodeCardV3({
     <Link
       href={`/watch/${animeBase.id}?epsId=${eps.id}`}
       className={cn(
-        "bg-secondary/75 rounded-md p-2 hover:opacity-50",
+        "bg-secondary/75 rounded-md p-2.5 hover:opacity-50",
         isActive && "pointer-events-none opacity-50",
       )}
       onClick={() => {

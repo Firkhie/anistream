@@ -13,6 +13,11 @@ import {
 } from "../anime/AnimeEpisodeCard";
 import { cn } from "@/lib/utils";
 import useAnimeBaseById from "@/hooks/useAnimeBaseById";
+import {
+  AnimeEpisodeCardSkeletonV1,
+  AnimeEpisodeCardSkeletonV2,
+  AnimeEpisodeCardSkeletonV3,
+} from "../anime/AnimeEpisodeCardSkeleton";
 
 export type WatchView = "detail" | "grid" | "list";
 
@@ -77,10 +82,16 @@ export default function WatchSection({
       </div>
 
       {/* Episodes */}
-      {loadingEpisodes ? (
-        <div>
-          <span className="text-sm">Loading</span>
-        </div>
+      {!loadingEpisodes ? (
+        <>
+          {view === "detail" ? (
+            <AnimeEpisodeCardSkeletonV1 count={2} />
+          ) : view === "grid" ? (
+            <AnimeEpisodeCardSkeletonV2 count={6} />
+          ) : (
+            <AnimeEpisodeCardSkeletonV3 count={3} />
+          )}
+        </>
       ) : episodes.length ? (
         <div
           className={cn(
