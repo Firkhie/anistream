@@ -103,7 +103,10 @@ export default function HistoryPage() {
           {episodes.map((eps) => (
             <div key={eps.id} className="relative flex flex-col gap-2">
               {/* Image */}
-              <Link href={`/`} className="group relative aspect-video">
+              <Link
+                href={`/watch/${eps.animeId}?epsId=${eps.id}`}
+                className="group relative aspect-video"
+              >
                 <Image
                   src={eps.image ?? "/assets/not-found.png"}
                   alt={eps.title ?? ""}
