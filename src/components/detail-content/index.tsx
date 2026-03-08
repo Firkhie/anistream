@@ -11,9 +11,9 @@ export default async function DetailContent({ slug }: { slug: string }) {
   const data: AnimeDetail = await getAnimeDetailById({ id: slug });
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-2 sm:gap-5">
       <DetailHero banner={data.bannerImage ?? "/assets/test.png"} />
-      <div className="flex flex-col gap-5 px-2 md:gap-2 md:px-5 lg:flex-row">
+      <div className="flex flex-col gap-3 px-2 sm:gap-4 md:px-5 lg:flex-row">
         <InfoPanel data={data} />
         <DetailMain data={data} />
       </div>

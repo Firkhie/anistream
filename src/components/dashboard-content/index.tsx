@@ -3,7 +3,7 @@ import MainSection from "./MainSection";
 
 export default function DashboardContent() {
   return (
-    <div className="flex flex-col gap-12 lg:flex-row">
+    <div className="flex flex-col gap-8 sm:gap-12 lg:flex-row">
       <MainSection />
       <SubSection />
     </div>

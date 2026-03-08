@@ -7,7 +7,7 @@ import { Suspense } from "react";
 
 export default function SchedulePage() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3 sm:gap-4">
       <ScheduleHeader />
       <Suspense fallback={<AnimeScheduleSkeleton count={3} />}>
         <ScheduleLoader />

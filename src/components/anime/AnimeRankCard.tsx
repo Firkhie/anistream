@@ -57,20 +57,20 @@ export default function AnimeRankCard({ ...anime }: AnimeBasic & { relationType?
         />
       </div>
       {/* Content */}
-      <div className="flex flex-col justify-between gap-1 py-2 pr-2">
+      <div className="flex flex-col justify-between gap-1 overflow-hidden py-2 pr-2">
         <div>
           <span className="line-clamp-1 text-sm font-semibold">{title}</span>
           <span className="line-clamp-1 text-xs" style={{ color: textColor }}>
             {subTitle}
           </span>
         </div>
-        <div className="flex gap-1">
+        <div className="scrollbar-hidden flex gap-1 overflow-x-auto">
           {containerBadges.map(({ icon: Icon, key }) => {
             const value = anime[key];
             if (!value) return;
 
             return (
-              <Badge key={key} icon={Icon} className="shrink-0 rounded-sm">
+              <Badge key={key} icon={Icon} className="shrink-0 rounded-sm whitespace-nowrap">
                 {value}
               </Badge>
             );

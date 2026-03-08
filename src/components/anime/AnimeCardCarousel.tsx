@@ -32,7 +32,7 @@ export default function AnimeCardCarousel({
           {results?.map((anime) => (
             <CarouselItem
               key={anime.id}
-              className="basis-[35%] pl-2 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-1/8"
+              className="basis-[50%] pl-2 min-[375]:basis-[40%] min-[450px]:basis-[35%] sm:basis-[28%] md:basis-[22%] lg:basis-[18%] xl:basis-[13%]"
             >
               <AnimeCard {...anime} />
             </CarouselItem>

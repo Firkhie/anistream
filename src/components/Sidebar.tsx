@@ -92,7 +92,7 @@ export default function Sidebar() {
         {/* Header */}
         <div className="flex items-center justify-between gap-3 p-3">
           <Logo />
-          <Button size={"round"} variant={"secondary"} onClick={() => setIsOpen()}>
+          <Button size={"icon"} variant={"secondary"} onClick={() => setIsOpen()}>
             <X />
           </Button>
         </div>

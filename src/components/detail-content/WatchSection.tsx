@@ -56,6 +56,17 @@ export default function WatchSection({
     setEpisodes(filtered);
   }, [query, dataEpisodes]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setView(width >= 640 ? "detail" : "list");
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const views: WatchView[] = ["detail", "grid", "list"];
   const handleToggleView = () => {
     setView((prev) => views[(views.indexOf(prev) + 1) % views.length]);
@@ -65,8 +76,8 @@ export default function WatchSection({
     <div className="flex flex-col gap-3">
       {/* Header */}
       <div className="flex gap-2">
-        <div className="flex w-full items-center justify-between gap-2 rounded-sm border px-4 py-2">
-          <Search className="h-4 w-4 shrink-0" />
+        <div className="flex w-full items-center justify-between gap-2 rounded-sm border px-3 py-2 sm:px-4">
+          <Search className="hidden h-4 w-4 shrink-0 min-[375px]:block" />
           <input
             name="query"
             className="flex-1 bg-transparent text-sm outline-none focus:ring-0"

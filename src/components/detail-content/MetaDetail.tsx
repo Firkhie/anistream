@@ -92,7 +92,9 @@ export default function MetaDetail({ data, view }: { data: AnimeDetail; view: Me
       {view === "mobile" && (
         <div className="bg-secondary/50 mt-2 flex flex-col gap-4 rounded-sm p-3 text-sm lg:hidden">
           <span className="font-bold">Description</span>
-          <p className="text-foreground/75">{parse(description)}</p>
+          <p className="text-foreground/75 h-fit max-h-[140px] overflow-y-auto">
+            {parse(description)}
+          </p>
         </div>
       )}
     </div>

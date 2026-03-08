@@ -4,7 +4,7 @@ export default function AnimeScheduleSkeleton({ count }: { count: number }) {
   return (
     <div className="flex flex-col gap-3">
       <Skeleton className="h-8 w-64" />
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {Array.from({ length: count }).map((_, i) => (
           <div key={i} className="bg-secondary/25 flex gap-2 rounded-sm">
             {/* Left Side */}

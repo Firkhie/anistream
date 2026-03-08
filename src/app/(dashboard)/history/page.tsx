@@ -99,7 +99,7 @@ export default function HistoryPage() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(254px,1fr))] gap-2 md:gap-4">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(254px,1fr))] gap-3 md:gap-4">
           {episodes.map((eps) => (
             <div key={eps.id} className="relative flex flex-col gap-2">
               {/* Image */}

@@ -12,7 +12,7 @@ export default async function ScheduleLoader() {
         <div key={group.date} className="flex flex-col gap-3">
           <h2 className="text-lg font-semibold">{group.date}</h2>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
             {group.items.map((item, index) => (
               <AnimeScheduleCard key={`${item.id}-${index}`} {...item} />
             ))}

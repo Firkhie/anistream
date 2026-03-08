@@ -7,7 +7,7 @@ import UserToggle from "./UserToggle";
 
 export default function Navbar() {
   return (
-    <div className="bg-background fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between gap-1.5 border-b p-4">
+    <div className="bg-background fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between gap-1.5 border-b p-3 sm:p-4">
       {/* Desktop */}
       <div className="hidden shrink-0 md:flex">
         <Logo />
@@ -17,7 +17,7 @@ export default function Navbar() {
         <RandomGenerator />
       </div>
       <div className="hidden gap-1.5 md:flex">
-        <ModeToggle />
+        {/* <ModeToggle /> */}
         <UserToggle />
       </div>
 
@@ -29,7 +29,7 @@ export default function Navbar() {
       <div className="flex gap-1.5 md:hidden">
         <SearchBar />
         <RandomGenerator />
-        <ModeToggle />
+        {/* <ModeToggle /> */}
         <UserToggle />
       </div>
     </div>

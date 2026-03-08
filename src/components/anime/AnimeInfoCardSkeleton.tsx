@@ -7,7 +7,7 @@ export default function AnimeInfoCardSkeleton({ count }: { count: number }) {
         <div key={i} className="flex gap-2 rounded-sm border p-2">
           {/* Left Side */}
           <div className="flex flex-col gap-2">
-            <div className="relative aspect-2/3 h-48">
+            <div className="relative aspect-2/3 h-40 md:h-48">
               <Skeleton className="h-full" />
             </div>
             <div className="flex gap-2">
@@ -22,13 +22,11 @@ export default function AnimeInfoCardSkeleton({ count }: { count: number }) {
               <Skeleton className="h-5 w-full" />
               <Skeleton className="h-3 w-full" />
               <Skeleton className="h-3 w-full" />
-              <Skeleton className="h-3 w-full" />
             </div>
             <div className="flex gap-2">
-              <Skeleton className="h-3 w-14" />
-              <Skeleton className="h-3 w-14" />
-              <Skeleton className="h-3 w-14" />
-              <Skeleton className="h-3 w-14" />
+              <Skeleton className="h-3 w-full max-w-14" />
+              <Skeleton className="h-3 w-full max-w-14" />
+              <Skeleton className="h-3 w-full max-w-14" />
             </div>
           </div>
         </div>

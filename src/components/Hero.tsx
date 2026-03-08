@@ -72,13 +72,17 @@ export default async function Hero() {
                         if (!value) return;
 
                         return (
-                          <Badge key={key} icon={Icon} className="rounded-sm text-white/75">
+                          <Badge
+                            key={key}
+                            icon={Icon}
+                            className="shrink-0 rounded-sm whitespace-nowrap text-white/75"
+                          >
                             {value}
                           </Badge>
                         );
                       })}
                     </div>
-                    <h1 className="line-clamp-2 text-2xl font-semibold text-white md:text-3xl lg:text-4xl">
+                    <h1 className="line-clamp-2 text-xl font-semibold text-white sm:text-2xl md:text-3xl lg:text-4xl">
                       {title}
                     </h1>
                     <div className="hidden text-sm text-white md:line-clamp-2 lg:line-clamp-3">

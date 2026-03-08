@@ -47,7 +47,7 @@ export function DetailMain({ data }: { data: AnimeDetail }) {
               if (!value) return;
 
               return (
-                <Badge key={key} icon={Icon} className="rounded-sm">
+                <Badge key={key} icon={Icon} className="shrink-0 rounded-sm whitespace-nowrap">
                   {value}
                 </Badge>
               );

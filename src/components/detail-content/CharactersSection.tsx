@@ -53,7 +53,7 @@ export default function CharactersSection() {
       ) : !data?.results?.length ? (
         <div className="text-muted-foreground text-sm">Characters not found.</div>
       ) : (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(398px,1fr))] gap-2">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(310px,1fr))] gap-2">
           {visibleCharacters.map((char) => (
             <AnimeCharacterCard key={char.id} char={char} lang={selectedLang} />
           ))}

@@ -26,14 +26,14 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Navbar />
           <Sidebar />
           <div className="flex min-h-screen justify-center pt-16 md:pl-20">
-            <div className="flex w-full max-w-[1536px] flex-col p-4">
+            <div className="flex w-full max-w-[1536px] flex-col p-3 sm:p-4">
               <main className="flex-1">{children}</main>
               <Toaster />
               <Footer />

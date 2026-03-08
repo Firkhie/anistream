@@ -20,7 +20,7 @@ export default function GenreBadge({ genre, color }: GenreBadgeProps) {
       onClick={(e) => e.stopPropagation()}
     >
       <Badge
-        className="shrink-0 cursor-pointer rounded-sm px-4 py-1 hover:opacity-75"
+        className="shrink-0 cursor-pointer rounded-sm px-4 py-1 whitespace-nowrap hover:opacity-75"
         style={{
           backgroundColor: `${color}45`,
           color: color,

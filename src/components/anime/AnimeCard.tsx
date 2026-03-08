@@ -37,12 +37,15 @@ export default function AnimeCard({ ...anime }: AnimeBasic) {
         {/* Badges */}
         <div className="absolute bottom-2 left-2 flex gap-0.5">
           {anime.currentEpisode && (
-            <Badge icon={ClosedCaption} className="bg-primary/75 text-foreground rounded-l-sm">
+            <Badge
+              icon={ClosedCaption}
+              className="bg-primary/75 text-foreground shrink-0 rounded-l-sm whitespace-nowrap"
+            >
               {anime.currentEpisode}
             </Badge>
           )}
           {anime.totalEpisodes && (
-            <Badge className="bg-primary/75 text-foreground rounded-r-sm">
+            <Badge className="bg-primary/75 text-foreground shrink-0 rounded-r-sm whitespace-nowrap">
               {anime.totalEpisodes}
             </Badge>
           )}
@@ -72,7 +75,7 @@ export default function AnimeCard({ ...anime }: AnimeBasic) {
           if (!value) return;
 
           return (
-            <Badge key={key} icon={Icon} className="rounded-sm">
+            <Badge key={key} icon={Icon} className="shrink-0 rounded-sm whitespace-nowrap">
               {value}
             </Badge>
           );

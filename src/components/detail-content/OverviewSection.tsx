@@ -29,7 +29,7 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
             <Users className="h-5 w-5" />
             <h4>Characters</h4>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(398px,1fr))] gap-2">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(310px,1fr))] gap-2">
             {data.characters.map((char) => (
               <AnimeCharacterCard key={char.id} char={char} lang={selectedLang} />
             ))}
@@ -45,7 +45,7 @@ export default function OverviewContent({ data }: { data: AnimeDetail }) {
             <h4>Relations</h4>
           </div>
 
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(398px,1fr))] gap-2">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(310px,1fr))] gap-2">
             {visibleRelations?.map((anime) => (
               <AnimeRankCard key={anime.id} {...anime} />
             ))}

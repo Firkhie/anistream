@@ -8,7 +8,7 @@ import { Suspense } from "react";
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3 sm:gap-4">
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>

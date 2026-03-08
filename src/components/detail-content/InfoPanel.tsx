@@ -28,10 +28,10 @@ export default function InfoPanel({ data }: { data: AnimeDetail }) {
     "Untitled";
 
   return (
-    <div className="flex flex-col gap-5 lg:flex-row">
+    <div className="flex flex-col gap-3 sm:gap-5 lg:flex-row">
       <div className="relative -top-24 flex h-fit shrink-0 gap-2 lg:w-52 lg:flex-col">
         {/* Cover */}
-        <div className="w-40 shrink-0 lg:w-52">
+        <div className="w-32 shrink-0 sm:w-40 lg:w-52">
           <div className="relative aspect-2/3">
             <Image
               src={data.coverImage ?? "/assets/not-found.png"}
@@ -59,11 +59,11 @@ export default function InfoPanel({ data }: { data: AnimeDetail }) {
         </div>
 
         {/* Action Mobile */}
-        <div className="relative top-24 left-2 flex w-full flex-col gap-2 lg:hidden">
-          <h2 className="text-lg font-bold">{title}</h2>
-          <div className="flex gap-2">
-            <Button size="lg" variant="custom" className="flex-1" onClick={handleAddToList}>
-              <NotebookPen /> Add To List
+        <div className="relative top-24 left-1 flex w-full flex-col gap-2 sm:left-2 lg:hidden">
+          <h2 className="line-clamp-1 text-lg font-bold">{title}</h2>
+          <div className="flex shrink-0 flex-wrap gap-2">
+            <Button size="lg" variant="custom" className="sm:flex-1" onClick={handleAddToList}>
+              <NotebookPen /> <span className="hidden sm:block">Add To List</span>
             </Button>
             <Button size="lg" variant="custom" onClick={handleWatchNow}>
               <Play />
