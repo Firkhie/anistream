@@ -1,6 +1,6 @@
 <div align="center">
   <p align="center"><img src="./public/assets/logo.png" alt="Logo" width="200" height="200"></p>
-  <h1 style="border: none;">SnackWhiz: AI-Generated Snack Recipes</h1>
+  <h1 style="border: none;">Anistream</h1>
   <div>
     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
     <img src="https://img.shields.io/badge/-React-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react" />
